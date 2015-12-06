@@ -1,0 +1,85 @@
+﻿@model IEnumerable<CourseWork7Term.Models.film>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table>
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.duration)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.age_limit)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.release_year)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.description)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.average_mark)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.genre)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.country)
+        </th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.duration)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.age_limit)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.release_year)
+        </td>
+        <td>
+            @{var subString = item.description.Substring(0, 50) + "...";}
+            @Html.DisplayFor(modelItem => subString);
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.average_mark)
+        </td>
+        <td>
+            <ul>
+                @foreach (var genre in item.genre)
+                {
+                    <li>@genre.name</li>
+                }
+            </ul>
+        </td>
+        <td>
+            <ul>
+                @foreach (var country in item.country)
+                {
+                    <li>@country.name</li>
+                }
+            </ul>
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.id }) |
+            @Html.ActionLink("Details", "Details", new { id=item.id }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.id })
+        </td>
+    </tr>
+}
+
+</table>

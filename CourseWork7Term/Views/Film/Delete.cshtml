@@ -1,0 +1,61 @@
+﻿@model CourseWork7Term.Models.film
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<fieldset>
+    <legend>film</legend>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.name)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.name)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.duration)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.duration)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.age_limit)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.age_limit)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.release_year)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.release_year)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.description)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.description)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.average_mark)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.average_mark)
+    </div>
+</fieldset>
+@using (Html.BeginForm()) {
+    @Html.AntiForgeryToken()
+    <p>
+        <input type="submit" value="Delete" /> |
+        @Html.ActionLink("Back to List", "Index")
+    </p>
+}

@@ -1,0 +1,117 @@
+﻿@model CourseWork7Term.Models.film
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<fieldset>
+    <legend>film</legend>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.name)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.name)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.duration)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.duration)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.age_limit)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.age_limit)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.release_year)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.release_year)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.description)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.description)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.average_mark)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.average_mark)
+    </div>
+
+    <div class="display-label">
+        @Html.DisplayNameFor(model => model.genre)
+    </div>
+    <div class="display-field">
+        <ul>
+            @foreach (var genre in Model.genre)
+            {
+                <li>@genre.name</li>
+            }
+        </ul>
+    </div>
+
+    <div class="display-label">
+        @Html.DisplayNameFor(model => model.country)
+    </div>
+    <div class="display-field">
+        <ul>
+            @foreach (var country in Model.country)
+            {
+                <li>@country.name</li>
+            }
+        </ul>
+    </div>
+
+    <div class="display-label">
+        @Html.DisplayNameFor(model => model.actor)
+    </div>
+    <div class="display-field">
+        <ul>
+            @foreach (var actor in Model.actor)
+            {
+                <li>@actor.name</li>
+            }
+        </ul>
+    </div>
+
+    <div class="display-label">
+        @Html.DisplayNameFor(model => model.screenwriter)
+    </div>
+    <div class="display-field">
+        <ul>
+            @foreach (var screenwriter in Model.screenwriter)
+            {
+                <li>@screenwriter.name</li>
+            }
+        </ul>
+    </div>
+
+    <div class="display-label">
+        @Html.DisplayNameFor(model => model.producer)
+    </div>
+    <div class="display-field">
+        <ul>
+            @foreach (var producer in Model.producer)
+            {
+                <li>@producer.name</li>
+            }
+        </ul>
+    </div>
+</fieldset>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id=Model.id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

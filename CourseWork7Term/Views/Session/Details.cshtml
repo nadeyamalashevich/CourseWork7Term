@@ -1,0 +1,43 @@
+﻿@model CourseWork7Term.Models.session
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<fieldset>
+    <legend>session</legend>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.cinema.name)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.cinema.name)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.film.name)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.film.name)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.start_time)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.start_time)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.ticket_cost)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.ticket_cost)
+    </div>
+</fieldset>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { cinema_id = Model.cinema_id, film_id = Model.film_id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

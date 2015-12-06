@@ -1,0 +1,573 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="Хранилище CinemaModel" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="actor">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" Nullable="false" />
+    <Property Name="name" Type="nchar" MaxLength="200" Nullable="false" />
+  </EntityType>
+  <EntityType Name="cinema">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" Nullable="false" />
+    <Property Name="name" Type="nchar" MaxLength="100" Nullable="false" />
+    <Property Name="location" Type="nchar" MaxLength="300" />
+    <Property Name="work_time" Type="nchar" MaxLength="100" />
+    <Property Name="phone" Type="nchar" MaxLength="20" />
+  </EntityType>
+  <EntityType Name="cinema_place">
+    <Key>
+      <PropertyRef Name="place_id" />
+      <PropertyRef Name="cinema_id" />
+    </Key>
+    <Property Name="place_id" Type="int" Nullable="false" />
+    <Property Name="cinema_id" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="country">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" Nullable="false" />
+    <Property Name="name" Type="nchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="film">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" Nullable="false" />
+    <Property Name="name" Type="nchar" MaxLength="200" Nullable="false" />
+    <Property Name="duration" Type="nchar" MaxLength="20" />
+    <Property Name="age_limit" Type="int" />
+    <Property Name="release_year" Type="nchar" MaxLength="10" />
+    <Property Name="description" Type="text" />
+    <Property Name="average_mark" Type="float" Nullable="false" />
+  </EntityType>
+  <EntityType Name="film_actor">
+    <Key>
+      <PropertyRef Name="film_id" />
+      <PropertyRef Name="actor_id" />
+    </Key>
+    <Property Name="film_id" Type="int" Nullable="false" />
+    <Property Name="actor_id" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="film_country">
+    <Key>
+      <PropertyRef Name="film_id" />
+      <PropertyRef Name="country_id" />
+    </Key>
+    <Property Name="film_id" Type="int" Nullable="false" />
+    <Property Name="country_id" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="film_genre">
+    <Key>
+      <PropertyRef Name="film_id" />
+      <PropertyRef Name="genre_id" />
+    </Key>
+    <Property Name="film_id" Type="int" Nullable="false" />
+    <Property Name="genre_id" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="film_producer">
+    <Key>
+      <PropertyRef Name="film_id" />
+      <PropertyRef Name="producer_id" />
+    </Key>
+    <Property Name="film_id" Type="int" Nullable="false" />
+    <Property Name="producer_id" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="film_profile_mark">
+    <Key>
+      <PropertyRef Name="profile_id" />
+      <PropertyRef Name="film_id" />
+    </Key>
+    <Property Name="mark_id" Type="int" Nullable="false" />
+    <Property Name="profile_id" Type="int" Nullable="false" />
+    <Property Name="film_id" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="film_screemwriter">
+    <Key>
+      <PropertyRef Name="film_id" />
+      <PropertyRef Name="screenwriter_id" />
+    </Key>
+    <Property Name="film_id" Type="int" Nullable="false" />
+    <Property Name="screenwriter_id" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="genre">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" Nullable="false" />
+    <Property Name="name" Type="nchar" MaxLength="100" Nullable="false" />
+  </EntityType>
+  <EntityType Name="mark">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" Nullable="false" />
+    <Property Name="name" Type="nchar" MaxLength="100" Nullable="false" />
+    <Property Name="value" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="place">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" Nullable="false" />
+    <Property Name="range" Type="int" Nullable="false" />
+    <Property Name="number" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="producer">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" Nullable="false" />
+    <Property Name="name" Type="nchar" MaxLength="200" Nullable="false" />
+  </EntityType>
+  <EntityType Name="profile">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" Nullable="false" />
+    <Property Name="name" Type="nchar" MaxLength="100" Nullable="false" />
+    <Property Name="email" Type="nchar" MaxLength="100" Nullable="false" />
+  </EntityType>
+  <EntityType Name="screenwriter">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" Nullable="false" />
+    <Property Name="name" Type="nchar" MaxLength="200" Nullable="false" />
+  </EntityType>
+  <EntityType Name="session">
+    <Key>
+      <PropertyRef Name="cinema_id" />
+      <PropertyRef Name="film_id" />
+    </Key>
+    <Property Name="cinema_id" Type="int" Nullable="false" />
+    <Property Name="film_id" Type="int" Nullable="false" />
+    <Property Name="start_time" Type="datetime" Nullable="false" />
+    <Property Name="ticket_cost" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="principal_id" Type="int" Nullable="false" />
+    <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="version" Type="int" />
+    <Property Name="definition" Type="varbinary(max)" />
+  </EntityType>
+  <EntityType Name="ticket">
+    <Key>
+      <PropertyRef Name="cinema_id" />
+      <PropertyRef Name="film_id" />
+      <PropertyRef Name="place_id" />
+    </Key>
+    <Property Name="is_bought" Type="bit" Nullable="false" />
+    <Property Name="profile_id" Type="int" />
+    <Property Name="cinema_id" Type="int" Nullable="false" />
+    <Property Name="film_id" Type="int" Nullable="false" />
+    <Property Name="place_id" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="user">
+    <Key>
+      <PropertyRef Name="login" />
+    </Key>
+    <Property Name="profile_id" Type="int" Nullable="false" />
+    <Property Name="login" Type="nchar" MaxLength="100" Nullable="false" />
+    <Property Name="password" Type="nchar" MaxLength="100" Nullable="false" />
+  </EntityType>
+  <Association Name="cinema_id">
+    <End Role="cinema" Type="Self.cinema" Multiplicity="1" />
+    <End Role="cinema_place" Type="Self.cinema_place" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="cinema">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="cinema_place">
+        <PropertyRef Name="cinema_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="country_id">
+    <End Role="country" Type="Self.country" Multiplicity="1" />
+    <End Role="film_country" Type="Self.film_country" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="country">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="film_country">
+        <PropertyRef Name="country_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="film_actor_actor">
+    <End Role="actor" Type="Self.actor" Multiplicity="1" />
+    <End Role="film_actor" Type="Self.film_actor" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="actor">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="film_actor">
+        <PropertyRef Name="actor_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="film_actor_film">
+    <End Role="film" Type="Self.film" Multiplicity="1" />
+    <End Role="film_actor" Type="Self.film_actor" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="film">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="film_actor">
+        <PropertyRef Name="film_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="film_c_id">
+    <End Role="film" Type="Self.film" Multiplicity="1" />
+    <End Role="film_country" Type="Self.film_country" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="film">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="film_country">
+        <PropertyRef Name="film_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="film_g_id">
+    <End Role="film" Type="Self.film" Multiplicity="1" />
+    <End Role="film_genre" Type="Self.film_genre" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="film">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="film_genre">
+        <PropertyRef Name="film_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="film_producer_film">
+    <End Role="film" Type="Self.film" Multiplicity="1" />
+    <End Role="film_producer" Type="Self.film_producer" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="film">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="film_producer">
+        <PropertyRef Name="film_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="film_producer_producer">
+    <End Role="producer" Type="Self.producer" Multiplicity="1" />
+    <End Role="film_producer" Type="Self.film_producer" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="producer">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="film_producer">
+        <PropertyRef Name="producer_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="film_profile_mark_film">
+    <End Role="film" Type="Self.film" Multiplicity="1" />
+    <End Role="film_profile_mark" Type="Self.film_profile_mark" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="film">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="film_profile_mark">
+        <PropertyRef Name="film_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="film_profile_mark_mark">
+    <End Role="mark" Type="Self.mark" Multiplicity="1" />
+    <End Role="film_profile_mark" Type="Self.film_profile_mark" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="mark">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="film_profile_mark">
+        <PropertyRef Name="mark_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="film_profile_mark_profile">
+    <End Role="profile" Type="Self.profile" Multiplicity="1" />
+    <End Role="film_profile_mark" Type="Self.film_profile_mark" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="profile">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="film_profile_mark">
+        <PropertyRef Name="profile_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="film_screemwriter_film">
+    <End Role="film" Type="Self.film" Multiplicity="1" />
+    <End Role="film_screemwriter" Type="Self.film_screemwriter" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="film">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="film_screemwriter">
+        <PropertyRef Name="film_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="film_screemwriter_screemwriter">
+    <End Role="screenwriter" Type="Self.screenwriter" Multiplicity="1" />
+    <End Role="film_screemwriter" Type="Self.film_screemwriter" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="screenwriter">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="film_screemwriter">
+        <PropertyRef Name="screenwriter_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="genre_id">
+    <End Role="genre" Type="Self.genre" Multiplicity="1" />
+    <End Role="film_genre" Type="Self.film_genre" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="genre">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="film_genre">
+        <PropertyRef Name="genre_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="place_id">
+    <End Role="place" Type="Self.place" Multiplicity="1" />
+    <End Role="cinema_place" Type="Self.cinema_place" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="place">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="cinema_place">
+        <PropertyRef Name="place_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="session_cinema">
+    <End Role="cinema" Type="Self.cinema" Multiplicity="1" />
+    <End Role="session" Type="Self.session" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="cinema">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="session">
+        <PropertyRef Name="cinema_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="session_film">
+    <End Role="film" Type="Self.film" Multiplicity="1" />
+    <End Role="session" Type="Self.session" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="film">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="session">
+        <PropertyRef Name="film_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="ticket_place">
+    <End Role="place" Type="Self.place" Multiplicity="1" />
+    <End Role="ticket" Type="Self.ticket" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="place">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="ticket">
+        <PropertyRef Name="place_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="ticket_profile">
+    <End Role="profile" Type="Self.profile" Multiplicity="0..1" />
+    <End Role="ticket" Type="Self.ticket" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="profile">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="ticket">
+        <PropertyRef Name="profile_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="ticket_session">
+    <End Role="session" Type="Self.session" Multiplicity="1" />
+    <End Role="ticket" Type="Self.ticket" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="session">
+        <PropertyRef Name="cinema_id" />
+        <PropertyRef Name="film_id" />
+      </Principal>
+      <Dependent Role="ticket">
+        <PropertyRef Name="cinema_id" />
+        <PropertyRef Name="film_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="user_profile">
+    <End Role="profile" Type="Self.profile" Multiplicity="1" />
+    <End Role="user" Type="Self.user" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="profile">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="user">
+        <PropertyRef Name="profile_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Function Name="fn_diagramobjects" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="int" />
+  <Function Name="sp_alterdiagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+    <Parameter Name="version" Type="int" Mode="In" />
+    <Parameter Name="definition" Type="varbinary(max)" Mode="In" />
+  </Function>
+  <Function Name="sp_creatediagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+    <Parameter Name="version" Type="int" Mode="In" />
+    <Parameter Name="definition" Type="varbinary(max)" Mode="In" />
+  </Function>
+  <Function Name="sp_dropdiagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+  </Function>
+  <Function Name="sp_helpdiagramdefinition" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+  </Function>
+  <Function Name="sp_helpdiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+  </Function>
+  <Function Name="sp_renamediagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+    <Parameter Name="new_diagramname" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="sp_upgraddiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <EntityContainer Name="Хранилище CinemaModelContainer">
+    <EntitySet Name="actor" EntityType="Self.actor" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="cinema" EntityType="Self.cinema" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="cinema_place" EntityType="Self.cinema_place" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="country" EntityType="Self.country" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="film" EntityType="Self.film" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="film_actor" EntityType="Self.film_actor" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="film_country" EntityType="Self.film_country" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="film_genre" EntityType="Self.film_genre" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="film_producer" EntityType="Self.film_producer" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="film_profile_mark" EntityType="Self.film_profile_mark" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="film_screemwriter" EntityType="Self.film_screemwriter" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="genre" EntityType="Self.genre" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="mark" EntityType="Self.mark" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="place" EntityType="Self.place" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="producer" EntityType="Self.producer" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="profile" EntityType="Self.profile" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="screenwriter" EntityType="Self.screenwriter" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="session" EntityType="Self.session" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ticket" EntityType="Self.ticket" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="user" EntityType="Self.user" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="cinema_id" Association="Self.cinema_id">
+      <End Role="cinema" EntitySet="cinema" />
+      <End Role="cinema_place" EntitySet="cinema_place" />
+    </AssociationSet>
+    <AssociationSet Name="country_id" Association="Self.country_id">
+      <End Role="country" EntitySet="country" />
+      <End Role="film_country" EntitySet="film_country" />
+    </AssociationSet>
+    <AssociationSet Name="film_actor_actor" Association="Self.film_actor_actor">
+      <End Role="actor" EntitySet="actor" />
+      <End Role="film_actor" EntitySet="film_actor" />
+    </AssociationSet>
+    <AssociationSet Name="film_actor_film" Association="Self.film_actor_film">
+      <End Role="film" EntitySet="film" />
+      <End Role="film_actor" EntitySet="film_actor" />
+    </AssociationSet>
+    <AssociationSet Name="film_c_id" Association="Self.film_c_id">
+      <End Role="film" EntitySet="film" />
+      <End Role="film_country" EntitySet="film_country" />
+    </AssociationSet>
+    <AssociationSet Name="film_g_id" Association="Self.film_g_id">
+      <End Role="film" EntitySet="film" />
+      <End Role="film_genre" EntitySet="film_genre" />
+    </AssociationSet>
+    <AssociationSet Name="film_producer_film" Association="Self.film_producer_film">
+      <End Role="film" EntitySet="film" />
+      <End Role="film_producer" EntitySet="film_producer" />
+    </AssociationSet>
+    <AssociationSet Name="film_producer_producer" Association="Self.film_producer_producer">
+      <End Role="producer" EntitySet="producer" />
+      <End Role="film_producer" EntitySet="film_producer" />
+    </AssociationSet>
+    <AssociationSet Name="film_profile_mark_film" Association="Self.film_profile_mark_film">
+      <End Role="film" EntitySet="film" />
+      <End Role="film_profile_mark" EntitySet="film_profile_mark" />
+    </AssociationSet>
+    <AssociationSet Name="film_profile_mark_mark" Association="Self.film_profile_mark_mark">
+      <End Role="mark" EntitySet="mark" />
+      <End Role="film_profile_mark" EntitySet="film_profile_mark" />
+    </AssociationSet>
+    <AssociationSet Name="film_profile_mark_profile" Association="Self.film_profile_mark_profile">
+      <End Role="profile" EntitySet="profile" />
+      <End Role="film_profile_mark" EntitySet="film_profile_mark" />
+    </AssociationSet>
+    <AssociationSet Name="film_screemwriter_film" Association="Self.film_screemwriter_film">
+      <End Role="film" EntitySet="film" />
+      <End Role="film_screemwriter" EntitySet="film_screemwriter" />
+    </AssociationSet>
+    <AssociationSet Name="film_screemwriter_screemwriter" Association="Self.film_screemwriter_screemwriter">
+      <End Role="screenwriter" EntitySet="screenwriter" />
+      <End Role="film_screemwriter" EntitySet="film_screemwriter" />
+    </AssociationSet>
+    <AssociationSet Name="genre_id" Association="Self.genre_id">
+      <End Role="genre" EntitySet="genre" />
+      <End Role="film_genre" EntitySet="film_genre" />
+    </AssociationSet>
+    <AssociationSet Name="place_id" Association="Self.place_id">
+      <End Role="place" EntitySet="place" />
+      <End Role="cinema_place" EntitySet="cinema_place" />
+    </AssociationSet>
+    <AssociationSet Name="session_cinema" Association="Self.session_cinema">
+      <End Role="cinema" EntitySet="cinema" />
+      <End Role="session" EntitySet="session" />
+    </AssociationSet>
+    <AssociationSet Name="session_film" Association="Self.session_film">
+      <End Role="film" EntitySet="film" />
+      <End Role="session" EntitySet="session" />
+    </AssociationSet>
+    <AssociationSet Name="ticket_place" Association="Self.ticket_place">
+      <End Role="place" EntitySet="place" />
+      <End Role="ticket" EntitySet="ticket" />
+    </AssociationSet>
+    <AssociationSet Name="ticket_profile" Association="Self.ticket_profile">
+      <End Role="profile" EntitySet="profile" />
+      <End Role="ticket" EntitySet="ticket" />
+    </AssociationSet>
+    <AssociationSet Name="ticket_session" Association="Self.ticket_session">
+      <End Role="session" EntitySet="session" />
+      <End Role="ticket" EntitySet="ticket" />
+    </AssociationSet>
+    <AssociationSet Name="user_profile" Association="Self.user_profile">
+      <End Role="profile" EntitySet="profile" />
+      <End Role="user" EntitySet="user" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

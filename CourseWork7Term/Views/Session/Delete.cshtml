@@ -1,0 +1,47 @@
+﻿@model CourseWork7Term.Models.session
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<fieldset>
+    <legend>session</legend>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.cinema.name)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.cinema.name)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.film.name)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.film.name)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.start_time)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.start_time)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.ticket_cost)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.ticket_cost)
+    </div>
+</fieldset>
+@using (Html.BeginForm()) {
+    @Html.AntiForgeryToken()
+    <p>
+        <input type="submit" value="Delete" /> |
+        @Html.ActionLink("Back to List", "Index")
+    </p>
+}

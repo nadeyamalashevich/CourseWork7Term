@@ -1,0 +1,415 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="CinemaModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="actor">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" />
+    <Property Name="name" Type="String" MaxLength="200" FixedLength="true" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="film" Relationship="Self.film_actor" FromRole="actor" ToRole="film" />
+  </EntityType>
+  <EntityType Name="cinema">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" />
+    <Property Name="name" Type="String" MaxLength="100" FixedLength="true" Unicode="true" Nullable="false" />
+    <Property Name="location" Type="String" MaxLength="300" FixedLength="true" Unicode="true" />
+    <Property Name="work_time" Type="String" MaxLength="100" FixedLength="true" Unicode="true" />
+    <Property Name="phone" Type="String" MaxLength="20" FixedLength="true" Unicode="true" />
+    <NavigationProperty Name="session" Relationship="Self.session_cinema" FromRole="cinema" ToRole="session" />
+    <NavigationProperty Name="place" Relationship="Self.cinema_place" FromRole="cinema" ToRole="place" />
+  </EntityType>
+  <EntityType Name="country">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" />
+    <Property Name="name" Type="String" MaxLength="50" FixedLength="true" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="film" Relationship="Self.film_country" FromRole="country" ToRole="film" />
+  </EntityType>
+  <EntityType Name="film">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" />
+    <Property Name="name" Type="String" MaxLength="200" FixedLength="true" Unicode="true" Nullable="false" />
+    <Property Name="duration" Type="String" MaxLength="20" FixedLength="true" Unicode="true" />
+    <Property Name="age_limit" Type="Int32" />
+    <Property Name="release_year" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+    <Property Name="description" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="average_mark" Type="Double" Nullable="false" />
+    <NavigationProperty Name="film_profile_mark" Relationship="Self.film_profile_mark_film" FromRole="film" ToRole="film_profile_mark" />
+    <NavigationProperty Name="session" Relationship="Self.session_film" FromRole="film" ToRole="session" />
+    <NavigationProperty Name="actor" Relationship="Self.film_actor" FromRole="film" ToRole="actor" />
+    <NavigationProperty Name="country" Relationship="Self.film_country" FromRole="film" ToRole="country" />
+    <NavigationProperty Name="genre" Relationship="Self.film_genre" FromRole="film" ToRole="genre" />
+    <NavigationProperty Name="producer" Relationship="Self.film_producer" FromRole="film" ToRole="producer" />
+    <NavigationProperty Name="screenwriter" Relationship="Self.film_screemwriter" FromRole="film" ToRole="screenwriter" />
+  </EntityType>
+  <EntityType Name="film_profile_mark">
+    <Key>
+      <PropertyRef Name="profile_id" />
+      <PropertyRef Name="film_id" />
+    </Key>
+    <Property Name="mark_id" Type="Int32" Nullable="false" />
+    <Property Name="profile_id" Type="Int32" Nullable="false" />
+    <Property Name="film_id" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="film" Relationship="Self.film_profile_mark_film" FromRole="film_profile_mark" ToRole="film" />
+    <NavigationProperty Name="mark" Relationship="Self.film_profile_mark_mark" FromRole="film_profile_mark" ToRole="mark" />
+    <NavigationProperty Name="profile" Relationship="Self.film_profile_mark_profile" FromRole="film_profile_mark" ToRole="profile" />
+  </EntityType>
+  <EntityType Name="genre">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" />
+    <Property Name="name" Type="String" MaxLength="100" FixedLength="true" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="film" Relationship="Self.film_genre" FromRole="genre" ToRole="film" />
+  </EntityType>
+  <EntityType Name="mark">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" />
+    <Property Name="name" Type="String" MaxLength="100" FixedLength="true" Unicode="true" Nullable="false" />
+    <Property Name="value" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="film_profile_mark" Relationship="Self.film_profile_mark_mark" FromRole="mark" ToRole="film_profile_mark" />
+  </EntityType>
+  <EntityType Name="place">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" />
+    <Property Name="range" Type="Int32" Nullable="false" />
+    <Property Name="number" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="ticket" Relationship="Self.ticket_place" FromRole="place" ToRole="ticket" />
+    <NavigationProperty Name="cinema" Relationship="Self.cinema_place" FromRole="place" ToRole="cinema" />
+  </EntityType>
+  <EntityType Name="producer">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" />
+    <Property Name="name" Type="String" MaxLength="200" FixedLength="true" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="film" Relationship="Self.film_producer" FromRole="producer" ToRole="film" />
+  </EntityType>
+  <EntityType Name="profile">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" />
+    <Property Name="name" Type="String" MaxLength="100" FixedLength="true" Unicode="true" Nullable="false" />
+    <Property Name="email" Type="String" MaxLength="100" FixedLength="true" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="film_profile_mark" Relationship="Self.film_profile_mark_profile" FromRole="profile" ToRole="film_profile_mark" />
+    <NavigationProperty Name="ticket" Relationship="Self.ticket_profile" FromRole="profile" ToRole="ticket" />
+    <NavigationProperty Name="user" Relationship="Self.user_profile" FromRole="profile" ToRole="user" />
+  </EntityType>
+  <EntityType Name="screenwriter">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" />
+    <Property Name="name" Type="String" MaxLength="200" FixedLength="true" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="film" Relationship="Self.film_screemwriter" FromRole="screenwriter" ToRole="film" />
+  </EntityType>
+  <EntityType Name="session">
+    <Key>
+      <PropertyRef Name="cinema_id" />
+      <PropertyRef Name="film_id" />
+    </Key>
+    <Property Name="cinema_id" Type="Int32" Nullable="false" />
+    <Property Name="film_id" Type="Int32" Nullable="false" />
+    <Property Name="start_time" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="ticket_cost" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="cinema" Relationship="Self.session_cinema" FromRole="session" ToRole="cinema" />
+    <NavigationProperty Name="film" Relationship="Self.session_film" FromRole="session" ToRole="film" />
+    <NavigationProperty Name="ticket" Relationship="Self.ticket_session" FromRole="session" ToRole="ticket" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="principal_id" Type="Int32" Nullable="false" />
+    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="Int32" />
+    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="ticket">
+    <Key>
+      <PropertyRef Name="cinema_id" />
+      <PropertyRef Name="film_id" />
+      <PropertyRef Name="place_id" />
+    </Key>
+    <Property Name="is_bought" Type="Boolean" Nullable="false" />
+    <Property Name="profile_id" Type="Int32" />
+    <Property Name="cinema_id" Type="Int32" Nullable="false" />
+    <Property Name="film_id" Type="Int32" Nullable="false" />
+    <Property Name="place_id" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="place" Relationship="Self.ticket_place" FromRole="ticket" ToRole="place" />
+    <NavigationProperty Name="profile" Relationship="Self.ticket_profile" FromRole="ticket" ToRole="profile" />
+    <NavigationProperty Name="session" Relationship="Self.ticket_session" FromRole="ticket" ToRole="session" />
+  </EntityType>
+  <EntityType Name="user">
+    <Key>
+      <PropertyRef Name="login" />
+    </Key>
+    <Property Name="profile_id" Type="Int32" Nullable="false" />
+    <Property Name="login" Type="String" MaxLength="100" FixedLength="true" Unicode="true" Nullable="false" />
+    <Property Name="password" Type="String" MaxLength="100" FixedLength="true" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="profile" Relationship="Self.user_profile" FromRole="user" ToRole="profile" />
+  </EntityType>
+  <Association Name="session_cinema">
+    <End Role="cinema" Type="Self.cinema" Multiplicity="1" />
+    <End Role="session" Type="Self.session" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="cinema">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="session">
+        <PropertyRef Name="cinema_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="film_profile_mark_film">
+    <End Role="film" Type="Self.film" Multiplicity="1" />
+    <End Role="film_profile_mark" Type="Self.film_profile_mark" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="film">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="film_profile_mark">
+        <PropertyRef Name="film_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="session_film">
+    <End Role="film" Type="Self.film" Multiplicity="1" />
+    <End Role="session" Type="Self.session" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="film">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="session">
+        <PropertyRef Name="film_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="film_profile_mark_mark">
+    <End Role="mark" Type="Self.mark" Multiplicity="1" />
+    <End Role="film_profile_mark" Type="Self.film_profile_mark" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="mark">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="film_profile_mark">
+        <PropertyRef Name="mark_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="film_profile_mark_profile">
+    <End Role="profile" Type="Self.profile" Multiplicity="1" />
+    <End Role="film_profile_mark" Type="Self.film_profile_mark" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="profile">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="film_profile_mark">
+        <PropertyRef Name="profile_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="ticket_place">
+    <End Role="place" Type="Self.place" Multiplicity="1" />
+    <End Role="ticket" Type="Self.ticket" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="place">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="ticket">
+        <PropertyRef Name="place_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="ticket_profile">
+    <End Role="profile" Type="Self.profile" Multiplicity="0..1" />
+    <End Role="ticket" Type="Self.ticket" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="profile">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="ticket">
+        <PropertyRef Name="profile_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="user_profile">
+    <End Role="profile" Type="Self.profile" Multiplicity="1" />
+    <End Role="user" Type="Self.user" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="profile">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="user">
+        <PropertyRef Name="profile_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="ticket_session">
+    <End Role="session" Type="Self.session" Multiplicity="1" />
+    <End Role="ticket" Type="Self.ticket" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="session">
+        <PropertyRef Name="cinema_id" />
+        <PropertyRef Name="film_id" />
+      </Principal>
+      <Dependent Role="ticket">
+        <PropertyRef Name="cinema_id" />
+        <PropertyRef Name="film_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="cinema_place">
+    <End Role="cinema" Type="Self.cinema" Multiplicity="*" />
+    <End Role="place" Type="Self.place" Multiplicity="*" />
+  </Association>
+  <Association Name="film_actor">
+    <End Role="actor" Type="Self.actor" Multiplicity="*" />
+    <End Role="film" Type="Self.film" Multiplicity="*" />
+  </Association>
+  <Association Name="film_country">
+    <End Role="country" Type="Self.country" Multiplicity="*" />
+    <End Role="film" Type="Self.film" Multiplicity="*" />
+  </Association>
+  <Association Name="film_genre">
+    <End Role="film" Type="Self.film" Multiplicity="*" />
+    <End Role="genre" Type="Self.genre" Multiplicity="*" />
+  </Association>
+  <Association Name="film_producer">
+    <End Role="film" Type="Self.film" Multiplicity="*" />
+    <End Role="producer" Type="Self.producer" Multiplicity="*" />
+  </Association>
+  <Association Name="film_screemwriter">
+    <End Role="film" Type="Self.film" Multiplicity="*" />
+    <End Role="screenwriter" Type="Self.screenwriter" Multiplicity="*" />
+  </Association>
+  <EntityContainer Name="CinemaEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="actor" EntityType="Self.actor" />
+    <EntitySet Name="cinema" EntityType="Self.cinema" />
+    <EntitySet Name="country" EntityType="Self.country" />
+    <EntitySet Name="film" EntityType="Self.film" />
+    <EntitySet Name="film_profile_mark" EntityType="Self.film_profile_mark" />
+    <EntitySet Name="genre" EntityType="Self.genre" />
+    <EntitySet Name="mark" EntityType="Self.mark" />
+    <EntitySet Name="place" EntityType="Self.place" />
+    <EntitySet Name="producer" EntityType="Self.producer" />
+    <EntitySet Name="profile" EntityType="Self.profile" />
+    <EntitySet Name="screenwriter" EntityType="Self.screenwriter" />
+    <EntitySet Name="session" EntityType="Self.session" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
+    <EntitySet Name="ticket" EntityType="Self.ticket" />
+    <EntitySet Name="user" EntityType="Self.user" />
+    <AssociationSet Name="session_cinema" Association="Self.session_cinema">
+      <End Role="cinema" EntitySet="cinema" />
+      <End Role="session" EntitySet="session" />
+    </AssociationSet>
+    <AssociationSet Name="film_profile_mark_film" Association="Self.film_profile_mark_film">
+      <End Role="film" EntitySet="film" />
+      <End Role="film_profile_mark" EntitySet="film_profile_mark" />
+    </AssociationSet>
+    <AssociationSet Name="session_film" Association="Self.session_film">
+      <End Role="film" EntitySet="film" />
+      <End Role="session" EntitySet="session" />
+    </AssociationSet>
+    <AssociationSet Name="film_profile_mark_mark" Association="Self.film_profile_mark_mark">
+      <End Role="mark" EntitySet="mark" />
+      <End Role="film_profile_mark" EntitySet="film_profile_mark" />
+    </AssociationSet>
+    <AssociationSet Name="film_profile_mark_profile" Association="Self.film_profile_mark_profile">
+      <End Role="profile" EntitySet="profile" />
+      <End Role="film_profile_mark" EntitySet="film_profile_mark" />
+    </AssociationSet>
+    <AssociationSet Name="ticket_place" Association="Self.ticket_place">
+      <End Role="place" EntitySet="place" />
+      <End Role="ticket" EntitySet="ticket" />
+    </AssociationSet>
+    <AssociationSet Name="ticket_profile" Association="Self.ticket_profile">
+      <End Role="profile" EntitySet="profile" />
+      <End Role="ticket" EntitySet="ticket" />
+    </AssociationSet>
+    <AssociationSet Name="user_profile" Association="Self.user_profile">
+      <End Role="profile" EntitySet="profile" />
+      <End Role="user" EntitySet="user" />
+    </AssociationSet>
+    <AssociationSet Name="ticket_session" Association="Self.ticket_session">
+      <End Role="session" EntitySet="session" />
+      <End Role="ticket" EntitySet="ticket" />
+    </AssociationSet>
+    <AssociationSet Name="cinema_place" Association="Self.cinema_place">
+      <End Role="cinema" EntitySet="cinema" />
+      <End Role="place" EntitySet="place" />
+    </AssociationSet>
+    <AssociationSet Name="film_actor" Association="Self.film_actor">
+      <End Role="actor" EntitySet="actor" />
+      <End Role="film" EntitySet="film" />
+    </AssociationSet>
+    <AssociationSet Name="film_country" Association="Self.film_country">
+      <End Role="country" EntitySet="country" />
+      <End Role="film" EntitySet="film" />
+    </AssociationSet>
+    <AssociationSet Name="film_genre" Association="Self.film_genre">
+      <End Role="film" EntitySet="film" />
+      <End Role="genre" EntitySet="genre" />
+    </AssociationSet>
+    <AssociationSet Name="film_producer" Association="Self.film_producer">
+      <End Role="film" EntitySet="film" />
+      <End Role="producer" EntitySet="producer" />
+    </AssociationSet>
+    <AssociationSet Name="film_screemwriter" Association="Self.film_screemwriter">
+      <End Role="film" EntitySet="film" />
+      <End Role="screenwriter" EntitySet="screenwriter" />
+    </AssociationSet>
+    <FunctionImport Name="sp_alterdiagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+      <Parameter Name="version" Mode="In" Type="Int32" />
+      <Parameter Name="definition" Mode="In" Type="Binary" />
+    </FunctionImport>
+    <FunctionImport Name="sp_creatediagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+      <Parameter Name="version" Mode="In" Type="Int32" />
+      <Parameter Name="definition" Mode="In" Type="Binary" />
+    </FunctionImport>
+    <FunctionImport Name="sp_dropdiagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_helpdiagramdefinition" ReturnType="Collection(CinemaModel.sp_helpdiagramdefinition_Result)">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_helpdiagrams" ReturnType="Collection(CinemaModel.sp_helpdiagrams_Result)">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_renamediagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+      <Parameter Name="new_diagramname" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="sp_upgraddiagrams" />
+  </EntityContainer>
+  <ComplexType Name="sp_helpdiagramdefinition_Result">
+    <Property Type="Int32" Name="version" Nullable="true" />
+    <Property Type="Binary" Name="definition" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="sp_helpdiagrams_Result">
+    <Property Type="String" Name="Database" Nullable="true" MaxLength="128" />
+    <Property Type="String" Name="Name" Nullable="false" MaxLength="128" />
+    <Property Type="Int32" Name="ID" Nullable="false" />
+    <Property Type="String" Name="Owner" Nullable="true" MaxLength="128" />
+    <Property Type="Int32" Name="OwnerID" Nullable="false" />
+  </ComplexType>
+</Schema>
