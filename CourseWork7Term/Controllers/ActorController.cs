@@ -1,0 +1,124 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Data;
+using System.Data.Entity;
+using System.Linq;
+using System.Web;
+using System.Web.Mvc;
+using CourseWork7Term.Models;
+
+namespace CourseWork7Term.Controllers
+{
+    [Authorize(Roles = "admin")]
+    public class ActorController : Controller
+    {
+        private CinemaEntities db = new CinemaEntities();
+
+        //
+        // GET: /Actor/
+
+        public ActionResult Index()
+        {
+            return View(db.actor.ToList());
+        }
+
+        //
+        // GET: /Actor/Details/5
+
+        public ActionResult Details(int id = 0)
+        {
+            actor actor = db.actor.Find(id);
+            if (actor == null)
+            {
+                return HttpNotFound();
+            }
+            return View(actor);
+        }
+
+        //
+        // GET: /Actor/Create
+
+        public ActionResult Create()
+        {
+            return View();
+        }
+
+        //
+        // POST: /Actor/Create
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Create(actor actor)
+        {
+            if (ModelState.IsValid)
+            {
+                db.actor.Add(actor);
+                db.SaveChanges();
+                return RedirectToAction("Index");
+            }
+
+            return View(actor);
+        }
+
+        //
+        // GET: /Actor/Edit/5
+
+        public ActionResult Edit(int id = 0)
+        {
+            actor actor = db.actor.Find(id);
+            if (actor == null)
+            {
+                return HttpNotFound();
+            }
+            return View(actor);
+        }
+
+        //
+        // POST: /Actor/Edit/5
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Edit(actor actor)
+        {
+            if (ModelState.IsValid)
+            {
+                db.Entry(actor).State = EntityState.Modified;
+                db.SaveChanges();
+                return RedirectToAction("Index");
+            }
+            return View(actor);
+        }
+
+        //
+        // GET: /Actor/Delete/5
+
+        public ActionResult Delete(int id = 0)
+        {
+            actor actor = db.actor.Find(id);
+            if (actor == null)
+            {
+                return HttpNotFound();
+            }
+            return View(actor);
+        }
+
+        //
+        // POST: /Actor/Delete/5
+
+        [HttpPost, ActionName("Delete")]
+        [ValidateAntiForgeryToken]
+        public ActionResult DeleteConfirmed(int id)
+        {
+            actor actor = db.actor.Find(id);
+            db.actor.Remove(actor);
+            db.SaveChanges();
+            return RedirectToAction("Index");
+        }
+
+        protected override void Dispose(bool disposing)
+        {
+            db.Dispose();
+            base.Dispose(disposing);
+        }
+    }
+}

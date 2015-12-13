@@ -17,6 +17,7 @@ namespace CourseWork7Term.Controllers
     [InitializeSimpleMembership]
     public class AccountController : Controller
     {
+        private CinemaEntities db = new CinemaEntities();
         //
         // GET: /Account/Login
 
@@ -81,6 +82,12 @@ namespace CourseWork7Term.Controllers
                 {
                     WebSecurity.CreateUserAndAccount(model.UserName, model.Password);
                     WebSecurity.Login(model.UserName, model.Password);
+                    db.profile.Add(new profile()
+                    {
+                        is_admin = false,
+                        login = model.UserName
+                    });
+                    db.SaveChanges();
                     return RedirectToAction("Index", "Home");
                 }
                 catch (MembershipCreateUserException e)

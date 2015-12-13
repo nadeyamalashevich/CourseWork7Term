@@ -47,6 +47,17 @@
             @Html.ValidationMessageFor(model => model.phone)
         </div>
 
+        <div class="editor-label"><b>Places:</b></div>
+        @{
+            var places = ViewBag.Places;
+            foreach (var place in places)
+            {
+                <input type="checkbox" name="selectedPlaces" value="@place.id"
+                       @(Model.place.Contains(place) ? "checked=\"checked\"" : "") />
+                    @Html.Raw(String.Format("Range {0} - place {1}", place.range, place.number)) <br />
+            }
+        }
+
         <p>
             <input type="submit" value="Save" />
         </p>

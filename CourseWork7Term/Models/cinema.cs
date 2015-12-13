@@ -11,7 +11,6 @@ namespace CourseWork7Term.Models
 {
     using System;
     using System.Collections.Generic;
-    using System.ComponentModel.DataAnnotations;
     
     public partial class cinema
     {
@@ -22,17 +21,9 @@ namespace CourseWork7Term.Models
         }
     
         public int id { get; set; }
-
-        [Display(Name = "Кинотеатр")]
         public string name { get; set; }
-
-        [Display(Name = "Местоположение")]
         public string location { get; set; }
-
-        [Display(Name = "Время работы")]
         public string work_time { get; set; }
-
-        [Display(Name = "Телефон")]
         public string phone { get; set; }
     
         public virtual ICollection<session> session { get; set; }

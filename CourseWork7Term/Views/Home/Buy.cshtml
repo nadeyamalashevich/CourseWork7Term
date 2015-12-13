@@ -1,0 +1,33 @@
+﻿@model CourseWork7Term.Models.session
+@{
+    ViewBag.Title = "Buy";
+    var hasOne = false;
+}
+
+<h2>Places:</h2>
+@if (Model.ticket.Any())
+{
+    using (Html.BeginForm())
+    {
+        <ul>
+            @foreach (var ticket in Model.ticket)
+            {
+                if (!ticket.is_bought)
+                {
+                    hasOne = true;
+                    <li>
+                        @String.Format("Range {0} - place {1}   -  Price: {2}",
+                            ticket.place.range, ticket.place.number, ticket.session.ticket_cost)
+                        <input type="checkbox" name="tickets"
+                               value="@String.Concat(ticket.cinema_id, ".", ticket.film_id, ".", ticket.place_id)" />
+                    </li>
+                }
+            }
+        </ul>
+        <input type="submit" value="Buy"/>
+    }
+}
+else
+{
+    <h4>Nothing</h4>
+}

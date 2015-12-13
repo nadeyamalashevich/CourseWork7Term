@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="Хранилище CinemaModel" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="Хранилище CinemaModel" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="actor">
           <Key>
             <PropertyRef Name="id" />
@@ -45,7 +45,7 @@
           <Property Name="name" Type="nchar" MaxLength="200" Nullable="false" />
           <Property Name="duration" Type="nchar" MaxLength="20" />
           <Property Name="age_limit" Type="int" />
-          <Property Name="release_year" Type="nchar" MaxLength="10" />
+          <Property Name="release_date" Type="date" Nullable="false" />
           <Property Name="description" Type="text" />
           <Property Name="average_mark" Type="float" Nullable="false" />
         </EntityType>
@@ -132,9 +132,9 @@
           <Key>
             <PropertyRef Name="id" />
           </Key>
-          <Property Name="id" Type="int" Nullable="false" />
-          <Property Name="name" Type="nchar" MaxLength="100" Nullable="false" />
-          <Property Name="email" Type="nchar" MaxLength="100" Nullable="false" />
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="login" Type="nchar" MaxLength="100" Nullable="false" />
+          <Property Name="is_admin" Type="bit" Nullable="false" />
         </EntityType>
         <EntityType Name="screenwriter">
           <Key>
@@ -174,14 +174,7 @@
           <Property Name="cinema_id" Type="int" Nullable="false" />
           <Property Name="film_id" Type="int" Nullable="false" />
           <Property Name="place_id" Type="int" Nullable="false" />
-        </EntityType>
-        <EntityType Name="user">
-          <Key>
-            <PropertyRef Name="login" />
-          </Key>
-          <Property Name="profile_id" Type="int" Nullable="false" />
-          <Property Name="login" Type="nchar" MaxLength="100" Nullable="false" />
-          <Property Name="password" Type="nchar" MaxLength="100" Nullable="false" />
+          <Property Name="buy_date" Type="datetime" />
         </EntityType>
         <Association Name="cinema_id">
           <End Role="cinema" Type="Self.cinema" Multiplicity="1" />
@@ -425,18 +418,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="user_profile">
-          <End Role="profile" Type="Self.profile" Multiplicity="1" />
-          <End Role="user" Type="Self.user" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="profile">
-              <PropertyRef Name="id" />
-            </Principal>
-            <Dependent Role="user">
-              <PropertyRef Name="profile_id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Function Name="fn_diagramobjects" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="int" />
         <Function Name="sp_alterdiagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
@@ -489,7 +470,6 @@
           <EntitySet Name="session" EntityType="Self.session" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ticket" EntityType="Self.ticket" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="user" EntityType="Self.user" Schema="dbo" store:Type="Tables" />
           <AssociationSet Name="cinema_id" Association="Self.cinema_id">
             <End Role="cinema" EntitySet="cinema" />
             <End Role="cinema_place" EntitySet="cinema_place" />
@@ -570,13 +550,8 @@
             <End Role="session" EntitySet="session" />
             <End Role="ticket" EntitySet="ticket" />
           </AssociationSet>
-          <AssociationSet Name="user_profile" Association="Self.user_profile">
-            <End Role="profile" EntitySet="profile" />
-            <End Role="user" EntitySet="user" />
-          </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="CinemaModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -616,7 +591,6 @@
           <Property Name="name" Type="String" MaxLength="200" FixedLength="true" Unicode="true" Nullable="false" />
           <Property Name="duration" Type="String" MaxLength="20" FixedLength="true" Unicode="true" />
           <Property Name="age_limit" Type="Int32" />
-          <Property Name="release_year" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
           <Property Name="description" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <Property Name="average_mark" Type="Double" Nullable="false" />
           <NavigationProperty Name="film_profile_mark" Relationship="Self.film_profile_mark_film" FromRole="film" ToRole="film_profile_mark" />
@@ -626,6 +600,7 @@
           <NavigationProperty Name="genre" Relationship="Self.film_genre" FromRole="film" ToRole="genre" />
           <NavigationProperty Name="producer" Relationship="Self.film_producer" FromRole="film" ToRole="producer" />
           <NavigationProperty Name="screenwriter" Relationship="Self.film_screemwriter" FromRole="film" ToRole="screenwriter" />
+          <Property Name="release_date" Type="DateTime" Nullable="false" Precision="0" />
         </EntityType>
         <EntityType Name="film_profile_mark">
           <Key>
@@ -679,11 +654,10 @@
             <PropertyRef Name="id" />
           </Key>
           <Property Name="id" Type="Int32" Nullable="false" />
-          <Property Name="name" Type="String" MaxLength="100" FixedLength="true" Unicode="true" Nullable="false" />
-          <Property Name="email" Type="String" MaxLength="100" FixedLength="true" Unicode="true" Nullable="false" />
           <NavigationProperty Name="film_profile_mark" Relationship="Self.film_profile_mark_profile" FromRole="profile" ToRole="film_profile_mark" />
           <NavigationProperty Name="ticket" Relationship="Self.ticket_profile" FromRole="profile" ToRole="ticket" />
-          <NavigationProperty Name="user" Relationship="Self.user_profile" FromRole="profile" ToRole="user" />
+          <Property Name="login" Type="String" Nullable="false" MaxLength="100" FixedLength="true" Unicode="true" />
+          <Property Name="is_admin" Type="Boolean" Nullable="false" />
         </EntityType>
         <EntityType Name="screenwriter">
           <Key>
@@ -730,15 +704,7 @@
           <NavigationProperty Name="place" Relationship="Self.ticket_place" FromRole="ticket" ToRole="place" />
           <NavigationProperty Name="profile" Relationship="Self.ticket_profile" FromRole="ticket" ToRole="profile" />
           <NavigationProperty Name="session" Relationship="Self.ticket_session" FromRole="ticket" ToRole="session" />
-        </EntityType>
-        <EntityType Name="user">
-          <Key>
-            <PropertyRef Name="login" />
-          </Key>
-          <Property Name="profile_id" Type="Int32" Nullable="false" />
-          <Property Name="login" Type="String" MaxLength="100" FixedLength="true" Unicode="true" Nullable="false" />
-          <Property Name="password" Type="String" MaxLength="100" FixedLength="true" Unicode="true" Nullable="false" />
-          <NavigationProperty Name="profile" Relationship="Self.user_profile" FromRole="user" ToRole="profile" />
+          <Property Name="buy_date" Type="DateTime" Precision="3" />
         </EntityType>
         <Association Name="session_cinema">
           <End Role="cinema" Type="Self.cinema" Multiplicity="1" />
@@ -824,18 +790,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="user_profile">
-          <End Role="profile" Type="Self.profile" Multiplicity="1" />
-          <End Role="user" Type="Self.user" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="profile">
-              <PropertyRef Name="id" />
-            </Principal>
-            <Dependent Role="user">
-              <PropertyRef Name="profile_id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="ticket_session">
           <End Role="session" Type="Self.session" Multiplicity="1" />
           <End Role="ticket" Type="Self.ticket" Multiplicity="*" />
@@ -889,7 +843,6 @@
           <EntitySet Name="session" EntityType="Self.session" />
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
           <EntitySet Name="ticket" EntityType="Self.ticket" />
-          <EntitySet Name="user" EntityType="Self.user" />
           <AssociationSet Name="session_cinema" Association="Self.session_cinema">
             <End Role="cinema" EntitySet="cinema" />
             <End Role="session" EntitySet="session" />
@@ -917,10 +870,6 @@
           <AssociationSet Name="ticket_profile" Association="Self.ticket_profile">
             <End Role="profile" EntitySet="profile" />
             <End Role="ticket" EntitySet="ticket" />
-          </AssociationSet>
-          <AssociationSet Name="user_profile" Association="Self.user_profile">
-            <End Role="profile" EntitySet="profile" />
-            <End Role="user" EntitySet="user" />
           </AssociationSet>
           <AssociationSet Name="ticket_session" Association="Self.ticket_session">
             <End Role="session" EntitySet="session" />
@@ -1028,11 +977,11 @@
           <EntitySetMapping Name="film">
             <EntityTypeMapping TypeName="CinemaModel.film">
               <MappingFragment StoreEntitySet="film">
+                <ScalarProperty Name="release_date" ColumnName="release_date" />
                 <ScalarProperty Name="id" ColumnName="id" />
                 <ScalarProperty Name="name" ColumnName="name" />
                 <ScalarProperty Name="duration" ColumnName="duration" />
                 <ScalarProperty Name="age_limit" ColumnName="age_limit" />
-                <ScalarProperty Name="release_year" ColumnName="release_year" />
                 <ScalarProperty Name="description" ColumnName="description" />
                 <ScalarProperty Name="average_mark" ColumnName="average_mark" />
               </MappingFragment>
@@ -1084,10 +1033,10 @@
           <EntitySetMapping Name="profile">
             <EntityTypeMapping TypeName="CinemaModel.profile">
               <MappingFragment StoreEntitySet="profile">
+                <ScalarProperty Name="is_admin" ColumnName="is_admin" />
+                <ScalarProperty Name="login" ColumnName="login" />
                 <ScalarProperty Name="id" ColumnName="id" />
-                <ScalarProperty Name="name" ColumnName="name" />
-                <ScalarProperty Name="email" ColumnName="email" />
-              </MappingFragment>
+                </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="screenwriter">
@@ -1122,20 +1071,12 @@
           <EntitySetMapping Name="ticket">
             <EntityTypeMapping TypeName="CinemaModel.ticket">
               <MappingFragment StoreEntitySet="ticket">
+                <ScalarProperty Name="buy_date" ColumnName="buy_date" />
                 <ScalarProperty Name="is_bought" ColumnName="is_bought" />
                 <ScalarProperty Name="profile_id" ColumnName="profile_id" />
                 <ScalarProperty Name="cinema_id" ColumnName="cinema_id" />
                 <ScalarProperty Name="film_id" ColumnName="film_id" />
                 <ScalarProperty Name="place_id" ColumnName="place_id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="user">
-            <EntityTypeMapping TypeName="CinemaModel.user">
-              <MappingFragment StoreEntitySet="user">
-                <ScalarProperty Name="profile_id" ColumnName="profile_id" />
-                <ScalarProperty Name="login" ColumnName="login" />
-                <ScalarProperty Name="password" ColumnName="password" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

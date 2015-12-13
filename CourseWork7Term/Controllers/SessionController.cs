@@ -9,6 +9,7 @@ using CourseWork7Term.Models;
 
 namespace CourseWork7Term.Controllers
 {
+    [Authorize(Roles = "admin")]
     public class SessionController : Controller
     {
         private CinemaEntities db = new CinemaEntities();
@@ -54,6 +55,27 @@ namespace CourseWork7Term.Controllers
         {
             if (ModelState.IsValid)
             {
+                var cinemas = db.cinema.Where(x => x.id == session.cinema_id).ToList();
+                if(cinemas != null && cinemas.Any())
+                {
+                    var cinema = cinemas.First();
+                    var item = db.Entry<cinema>(cinema);
+                    item.Collection(x => x.place).Load();
+                    foreach(var place in cinema.place)
+                    {
+                        db.Entry(place).State = EntityState.Modified;
+                        db.ticket.Add(new ticket()
+                        {
+                            session = session,
+                            place = place,
+                            is_bought = false,
+                            place_id = place.id,
+                            cinema_id = session.cinema_id,
+                            film_id = session.film_id
+                        });
+                    }
+                    
+                }
                 db.session.Add(session);
                 db.SaveChanges();
                 return RedirectToAction("Index");

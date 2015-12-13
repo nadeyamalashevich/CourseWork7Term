@@ -1,0 +1,139 @@
+﻿@model IEnumerable<CourseWork7Term.Models.session>
+@{
+    ViewBag.Title = "Search";
+}
+<h2>Search for sesssions</h2>
+<div>
+    @using (Ajax.BeginForm("Search", new AjaxOptions()))
+    { 
+        <div class="editor-label">
+            Cinemas
+        </div>
+        <div class="editor-field">
+            @Html.DropDownList("Cinemas", (SelectList)ViewBag.Cinemas, String.Empty)
+        </div>
+
+        <div class="editor-label">
+            Films
+        </div>
+        <div class="editor-field">
+            @Html.DropDownList("Films", (SelectList)ViewBag.Films, String.Empty)
+        </div>
+        
+        <div class="editor-label">
+            Actors
+        </div>
+        <div class="editor-field">
+            @Html.DropDownList("Actors", (SelectList)ViewBag.Actors, String.Empty)
+        </div>
+        
+        <div class="editor-label">
+            Producers
+        </div>
+        <div class="editor-field">
+            @Html.DropDownList("Producers", (SelectList)ViewBag.Producers, String.Empty)
+        </div>
+        
+        <div class="editor-label">
+            Screenwriters
+        </div>
+        <div class="editor-field">
+            @Html.DropDownList("Screenwriters", (SelectList)ViewBag.Screenwriters, String.Empty)
+        </div>
+                
+        <input type="submit" value="@ViewBag.Title" />
+    }
+</div>
+
+@if (Model != null && Model.Any())
+{
+    <h2>Results:</h2>
+    <table>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.cinema.name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.film.name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.start_time)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ticket_cost)
+            </th>
+            <th>
+                Contry:
+            </th>
+            <th>
+                Actors:
+            </th>
+            <th>
+                Producers:
+            </th>
+            <th>
+                Screenwriters:
+            </th>
+            <th></th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.cinema.name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.film.name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.start_time)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ticket_cost)
+                </td>
+                <td>
+                    <ul>
+                        @foreach (var country in item.film.country)
+                        {
+                            <li>@country.name</li>
+                        }
+                    </ul>
+                </td>
+                <td>
+                    <ul>
+                        @foreach (var country in item.film.actor)
+                        {
+                            <li>@country.name</li>
+                        }
+                    </ul>
+                </td>
+                <td>
+                    <ul>
+                        @foreach (var country in item.film.producer)
+                        {
+                            <li>@country.name</li>
+                        }
+                    </ul>
+                </td>
+                <td>
+                    <ul>
+                        @foreach (var country in item.film.screenwriter)
+                        {
+                            <li>@country.name</li>
+                        }
+                    </ul>
+                </td>
+                <td>
+                    @Html.ActionLink("Buy Ticket", "Buy", new { cinema_id = item.cinema_id, film_id = item.film_id })
+                </td>
+                <td>
+                    @Html.ActionLink("Set feedback", "Marks", new { film_id = item.film_id })
+                </td>
+            </tr>
+        }
+    </table>
+
+
+}

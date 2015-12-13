@@ -6,9 +6,11 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using CourseWork7Term.Models;
+using WebMatrix.WebData;
 
 namespace CourseWork7Term.Controllers
 {
+    [Authorize(Roles = "admin")]
     public class CinemaController : Controller
     {
         private CinemaEntities db = new CinemaEntities();
@@ -61,9 +63,9 @@ namespace CourseWork7Term.Controllers
 
         //
         // GET: /Cinema/Edit/5
-
         public ActionResult Edit(int id = 0)
         {
+            ViewBag.Places = db.place.ToList();
             cinema cinema = db.cinema.Find(id);
             if (cinema == null)
             {
@@ -77,12 +79,32 @@ namespace CourseWork7Term.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(cinema cinema)
+        public ActionResult Edit(cinema cinema, int[] selectedPlaces)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(cinema).State = EntityState.Modified;
-                db.SaveChanges();
+                if (selectedPlaces != null)
+                {
+                    //get current entry from db (db is context)
+                    var item = db.Entry<cinema>(cinema);
+
+                    //change item state to modified
+                    item.State = EntityState.Modified;
+
+                    //load existing items for ManyToMany collection
+                    item.Collection(x => x.place).Load();
+
+                    //clear Student items          
+                    cinema.place.Clear();
+
+                    //add Toner items
+                    foreach (var placeId in selectedPlaces)
+                    {
+                        var place = db.place.Find(placeId);
+                        cinema.place.Add(place);
+                    }
+                }
+                var t = db.SaveChanges();
                 return RedirectToAction("Index");
             }
             return View(cinema);

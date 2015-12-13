@@ -1,0 +1,29 @@
+﻿@model CourseWork7Term.Models.mark
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<fieldset>
+    <legend>mark</legend>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.name)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.name)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.value)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.value)
+    </div>
+</fieldset>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id=Model.id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

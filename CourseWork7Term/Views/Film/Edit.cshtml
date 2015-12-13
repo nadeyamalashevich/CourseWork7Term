@@ -6,7 +6,8 @@
 
 <h2>Edit</h2>
 
-@using (Html.BeginForm()) {
+@using (Html.BeginForm())
+{
     @Html.AntiForgeryToken()
     @Html.ValidationSummary(true)
 
@@ -40,11 +41,11 @@
         </div>
 
         <div class="editor-label">
-            @Html.LabelFor(model => model.release_year)
+            @Html.LabelFor(model => model.release_date)
         </div>
         <div class="editor-field">
-            @Html.EditorFor(model => model.release_year)
-            @Html.ValidationMessageFor(model => model.release_year)
+            @Html.EditorFor(model => model.release_date)
+            @Html.ValidationMessageFor(model => model.release_date)
         </div>
 
         <div class="editor-label">
@@ -62,7 +63,77 @@
             @Html.EditorFor(model => model.average_mark)
             @Html.ValidationMessageFor(model => model.average_mark)
         </div>
-
+        <table>
+            <tr>
+                <th>
+                    <div class="editor-label"><b>Actors:</b></div>
+                </th>
+                <th>
+                    <div class="editor-label"><b>Genre:</b></div>
+                </th>
+                <th>
+                    <div class="editor-label"><b>Producers:</b></div>
+                </th>
+                <th>
+                    <div class="editor-label"><b>Screenwriters:</b></div>
+                </th>
+                <th>
+                    <div class="editor-label"><b>Countrys:</b></div>
+                </th>
+            </tr>
+            <tr>
+                <td>
+                    @{
+                        foreach (var actor in ViewBag.Actor)
+                        {
+                            <input type="checkbox" name="selectedActors" value="@actor.id"
+                                   @(Model.actor.Contains(actor) ? "checked=\"checked\"" : "") />
+                                            @actor.name <br />
+                        }
+                    }
+                </td>
+                <td>
+                    @{
+                        foreach (var genre in ViewBag.Genre)
+                        {
+                            <input type="checkbox" name="selectedGenres" value="@genre.id"
+                                   @(Model.genre.Contains(genre) ? "checked=\"checked\"" : "") />
+                                            @genre.name <br />
+                        }
+                    }
+                </td>
+                <td>
+                    @{
+                        foreach (var producer in ViewBag.Producer)
+                        {
+                            <input type="checkbox" name="selectedProducers" value="@producer.id"
+                                   @(Model.producer.Contains(producer) ? "checked=\"checked\"" : "") />
+                                            @producer.name <br />
+                        }
+                    }
+                </td>
+                <td>
+                    @{
+                        foreach (var screenwriter in ViewBag.Screenwriter)
+                        {
+                            <input type="checkbox" name="selectedScreenwriters" value="@screenwriter.id"
+                                    @(Model.screenwriter.Contains(screenwriter) ? "checked=\"checked\"" : "") />
+                                            @screenwriter.name <br />
+                        }
+                    }
+                </td>
+                <td>
+                    @{
+                        foreach (var country in ViewBag.Country)
+                        {
+                            <input type="checkbox" name="selectedCountry" value="@country.id"
+                                   @(Model.country.Contains(country) ? "checked=\"checked\"" : "") />
+                                            @country.name <br />
+                        }
+                    }
+                </td>
+            </tr>
+        </table>
         <p>
             <input type="submit" value="Save" />
         </p>

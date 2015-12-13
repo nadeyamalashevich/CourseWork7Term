@@ -1,0 +1,73 @@
+﻿@model IEnumerable<CourseWork7Term.Models.film>
+
+@{
+    ViewBag.Title = "Marks";
+}
+
+<h2>Marks</h2>
+
+<table>
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.duration)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.age_limit)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.average_mark)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.release_date)
+        </th>
+        <th>You Mark</th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.duration)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.age_limit)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.average_mark)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.release_date)
+            </td>
+            <td>
+                @{
+                    var markId = -1;
+                    if (!item.film_profile_mark.Any(x => x.profile_id == ViewBag.currentId))
+                    {
+                        using (Html.BeginForm())
+                        {
+                            <input hidden="hidden" value="@item.id" name="film_id" />
+                                <select name="mark">
+                                    <option value="0" selected="selected"></option>
+                                    @foreach (CourseWork7Term.Models.mark mark in ViewBag.Marks)
+                                    {
+                                        <option value="@(mark.id + 1)">@mark.name</option>
+                                    }
+                                </select>
+                                <input type="submit" value="Set Mark" />
+                        }
+                    }
+                    else
+                    {
+                        @item.film_profile_mark.First(x => x.profile_id == ViewBag.currentId).mark.name
+                    }
+                }
+            </td>
+        </tr>
+    }
+</table>

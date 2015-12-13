@@ -36,6 +36,17 @@
     <div class="display-field">
         @Html.DisplayFor(model => model.phone)
     </div>
+    <div class="display-label">
+        @Html.DisplayNameFor(model => model.place)
+    </div>
+    <div class="display-field">
+        <ul>
+            @foreach (var pl in Model.place)
+            {
+                <li>@Html.Raw(String.Format("Range {0} - place {1}", pl.range, pl.number))</li>
+            }
+        </ul>
+    </div>
 </fieldset>
 <p>
     @Html.ActionLink("Edit", "Edit", new { id=Model.id }) |

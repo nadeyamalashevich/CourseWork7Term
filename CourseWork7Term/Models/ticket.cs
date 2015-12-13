@@ -19,6 +19,7 @@ namespace CourseWork7Term.Models
         public int cinema_id { get; set; }
         public int film_id { get; set; }
         public int place_id { get; set; }
+        public Nullable<System.DateTime> buy_date { get; set; }
     
         public virtual place place { get; set; }
         public virtual profile profile { get; set; }

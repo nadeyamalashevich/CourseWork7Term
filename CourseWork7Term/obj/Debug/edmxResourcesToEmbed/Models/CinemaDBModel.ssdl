@@ -40,7 +40,7 @@
     <Property Name="name" Type="nchar" MaxLength="200" Nullable="false" />
     <Property Name="duration" Type="nchar" MaxLength="20" />
     <Property Name="age_limit" Type="int" />
-    <Property Name="release_year" Type="nchar" MaxLength="10" />
+    <Property Name="release_date" Type="date" Nullable="false" />
     <Property Name="description" Type="text" />
     <Property Name="average_mark" Type="float" Nullable="false" />
   </EntityType>
@@ -127,9 +127,9 @@
     <Key>
       <PropertyRef Name="id" />
     </Key>
-    <Property Name="id" Type="int" Nullable="false" />
-    <Property Name="name" Type="nchar" MaxLength="100" Nullable="false" />
-    <Property Name="email" Type="nchar" MaxLength="100" Nullable="false" />
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="login" Type="nchar" MaxLength="100" Nullable="false" />
+    <Property Name="is_admin" Type="bit" Nullable="false" />
   </EntityType>
   <EntityType Name="screenwriter">
     <Key>
@@ -169,14 +169,7 @@
     <Property Name="cinema_id" Type="int" Nullable="false" />
     <Property Name="film_id" Type="int" Nullable="false" />
     <Property Name="place_id" Type="int" Nullable="false" />
-  </EntityType>
-  <EntityType Name="user">
-    <Key>
-      <PropertyRef Name="login" />
-    </Key>
-    <Property Name="profile_id" Type="int" Nullable="false" />
-    <Property Name="login" Type="nchar" MaxLength="100" Nullable="false" />
-    <Property Name="password" Type="nchar" MaxLength="100" Nullable="false" />
+    <Property Name="buy_date" Type="datetime" />
   </EntityType>
   <Association Name="cinema_id">
     <End Role="cinema" Type="Self.cinema" Multiplicity="1" />
@@ -420,18 +413,6 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="user_profile">
-    <End Role="profile" Type="Self.profile" Multiplicity="1" />
-    <End Role="user" Type="Self.user" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="profile">
-        <PropertyRef Name="id" />
-      </Principal>
-      <Dependent Role="user">
-        <PropertyRef Name="profile_id" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
   <Function Name="fn_diagramobjects" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="int" />
   <Function Name="sp_alterdiagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
@@ -484,7 +465,6 @@
     <EntitySet Name="session" EntityType="Self.session" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="ticket" EntityType="Self.ticket" Schema="dbo" store:Type="Tables" />
-    <EntitySet Name="user" EntityType="Self.user" Schema="dbo" store:Type="Tables" />
     <AssociationSet Name="cinema_id" Association="Self.cinema_id">
       <End Role="cinema" EntitySet="cinema" />
       <End Role="cinema_place" EntitySet="cinema_place" />
@@ -564,10 +544,6 @@
     <AssociationSet Name="ticket_session" Association="Self.ticket_session">
       <End Role="session" EntitySet="session" />
       <End Role="ticket" EntitySet="ticket" />
-    </AssociationSet>
-    <AssociationSet Name="user_profile" Association="Self.user_profile">
-      <End Role="profile" EntitySet="profile" />
-      <End Role="user" EntitySet="user" />
     </AssociationSet>
   </EntityContainer>
 </Schema>

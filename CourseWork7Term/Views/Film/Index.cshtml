@@ -21,7 +21,7 @@
             @Html.DisplayNameFor(model => model.age_limit)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.release_year)
+            @Html.DisplayNameFor(model => model.release_date)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.description)
@@ -49,7 +49,7 @@
             @Html.DisplayFor(modelItem => item.age_limit)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.release_year)
+            @Html.DisplayFor(modelItem => item.release_date)
         </td>
         <td>
             @{var subString = item.description.Substring(0, 50) + "...";}

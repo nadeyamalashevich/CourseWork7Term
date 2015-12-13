@@ -9,6 +9,7 @@ using CourseWork7Term.Models;
 
 namespace CourseWork7Term.Controllers
 {
+    [Authorize(Roles = "admin")]
     public class FilmController : Controller
     {
         private CinemaEntities db = new CinemaEntities();
@@ -64,6 +65,11 @@ namespace CourseWork7Term.Controllers
 
         public ActionResult Edit(int id = 0)
         {
+            ViewBag.Actor = db.actor.ToList();
+            ViewBag.Genre = db.genre.ToList();
+            ViewBag.Producer = db.producer.ToList();
+            ViewBag.Screenwriter = db.screenwriter.ToList();
+            ViewBag.Country = db.country.ToList();
             film film = db.film.Find(id);
             if (film == null)
             {
@@ -77,11 +83,67 @@ namespace CourseWork7Term.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(film film)
+        public ActionResult Edit(film film, 
+            int[] selectedActors, 
+            int[] selectedGenres, 
+            int[] selectedProducers, 
+            int[] selectedScreenwriters, 
+            int[] selectedCountry)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(film).State = EntityState.Modified;
+                //get current entry from db (db is context)
+                var item = db.Entry<film>(film);
+
+                //change item state to modified
+                item.State = EntityState.Modified;
+
+                //load existing items for ManyToMany collection
+                item.Collection(x => x.actor).Load();
+                item.Collection(x => x.genre).Load();
+                item.Collection(x => x.producer).Load();
+                item.Collection(x => x.screenwriter).Load();
+                item.Collection(x => x.country).Load();
+
+                //clear Student items          
+                film.actor.Clear();
+                film.genre.Clear();
+                film.producer.Clear();
+                film.screenwriter.Clear();
+                film.country.Clear();
+
+                //add Toner items
+                foreach (var actorId in selectedActors)
+                {
+                    var actor = db.actor.Find(actorId);
+                    film.actor.Add(actor);
+                }
+
+                foreach (var genreId in selectedGenres)
+                {
+                    var genre = db.genre.Find(genreId);
+                    film.genre.Add(genre);
+                }
+
+                foreach (var producerId in selectedProducers)
+                {
+                    var producer = db.producer.Find(producerId);
+                    film.producer.Add(producer);
+                }
+
+                foreach (var screenwriterId in selectedScreenwriters)
+                {
+                    var screenwriter = db.screenwriter.Find(screenwriterId);
+                    film.screenwriter.Add(screenwriter);
+                }
+
+                foreach (var countryId in selectedCountry)
+                {
+                    var country = db.country.Find(countryId);
+                    film.country.Add(country);
+                }
+
+
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }

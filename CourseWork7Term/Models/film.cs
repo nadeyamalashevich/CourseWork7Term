@@ -11,7 +11,6 @@ namespace CourseWork7Term.Models
 {
     using System;
     using System.Collections.Generic;
-    using System.ComponentModel.DataAnnotations;
     
     public partial class film
     {
@@ -27,41 +26,19 @@ namespace CourseWork7Term.Models
         }
     
         public int id { get; set; }
-
-        [Display(Name = "Фильм")]
         public string name { get; set; }
-
-        [Display(Name = "Продолжительность")]
         public string duration { get; set; }
-
-        [Display(Name = "Ограничение по возрасту")]
         public Nullable<int> age_limit { get; set; }
-
-        [Display(Name = "Год выпуска")]
-        public string release_year { get; set; }
-
-        [Display(Name = "Описание")]
         public string description { get; set; }
-
-        [Display(Name = "Средняя оценка")]
         public double average_mark { get; set; }
+        public System.DateTime release_date { get; set; }
     
         public virtual ICollection<film_profile_mark> film_profile_mark { get; set; }
         public virtual ICollection<session> session { get; set; }
-
-        [Display(Name = "Актеры")]
         public virtual ICollection<actor> actor { get; set; }
-
-        [Display(Name = "Страны")]
         public virtual ICollection<country> country { get; set; }
-
-        [Display(Name = "Жанры")]
         public virtual ICollection<genre> genre { get; set; }
-
-        [Display(Name = "Режиссеры")]
         public virtual ICollection<producer> producer { get; set; }
-
-        [Display(Name = "Сценаристы")]
         public virtual ICollection<screenwriter> screenwriter { get; set; }
     }
 }

@@ -184,9 +184,16 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\ActorController.cs" />
     <Compile Include="Controllers\CinemaController.cs" />
+    <Compile Include="Controllers\CountryController.cs" />
     <Compile Include="Controllers\FilmController.cs" />
+    <Compile Include="Controllers\GenreController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\MarkController.cs" />
+    <Compile Include="Controllers\PlaceController.cs" />
+    <Compile Include="Controllers\ProducerController.cs" />
+    <Compile Include="Controllers\ScreenwriterController.cs" />
     <Compile Include="Controllers\SessionController.cs" />
     <Compile Include="Filters\InitializeSimpleMembershipAttribute.cs" />
     <Compile Include="Global.asax.cs">
@@ -254,9 +261,6 @@
       <DependentUpon>CinemaDBModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\ticket.cs">
-      <DependentUpon>CinemaDBModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\user.cs">
       <DependentUpon>CinemaDBModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -404,6 +408,45 @@
     <Content Include="Views\Session\Create.cshtml" />
     <Content Include="Views\Session\Edit.cshtml" />
     <Content Include="Views\Session\Delete.cshtml" />
+    <Content Include="Views\Actor\Index.cshtml" />
+    <Content Include="Views\Actor\Details.cshtml" />
+    <Content Include="Views\Actor\Create.cshtml" />
+    <Content Include="Views\Actor\Edit.cshtml" />
+    <Content Include="Views\Actor\Delete.cshtml" />
+    <Content Include="Views\Screenwriter\Index.cshtml" />
+    <Content Include="Views\Screenwriter\Details.cshtml" />
+    <Content Include="Views\Screenwriter\Create.cshtml" />
+    <Content Include="Views\Screenwriter\Edit.cshtml" />
+    <Content Include="Views\Screenwriter\Delete.cshtml" />
+    <Content Include="Views\Producer\Index.cshtml" />
+    <Content Include="Views\Producer\Details.cshtml" />
+    <Content Include="Views\Producer\Create.cshtml" />
+    <Content Include="Views\Producer\Edit.cshtml" />
+    <Content Include="Views\Producer\Delete.cshtml" />
+    <Content Include="Views\Country\Index.cshtml" />
+    <Content Include="Views\Country\Details.cshtml" />
+    <Content Include="Views\Country\Create.cshtml" />
+    <Content Include="Views\Country\Edit.cshtml" />
+    <Content Include="Views\Country\Delete.cshtml" />
+    <Content Include="Views\Mark\Index.cshtml" />
+    <Content Include="Views\Mark\Details.cshtml" />
+    <Content Include="Views\Mark\Create.cshtml" />
+    <Content Include="Views\Mark\Edit.cshtml" />
+    <Content Include="Views\Mark\Delete.cshtml" />
+    <Content Include="Views\Genre\Index.cshtml" />
+    <Content Include="Views\Genre\Details.cshtml" />
+    <Content Include="Views\Genre\Create.cshtml" />
+    <Content Include="Views\Genre\Edit.cshtml" />
+    <Content Include="Views\Genre\Delete.cshtml" />
+    <Content Include="Views\Place\Index.cshtml" />
+    <Content Include="Views\Place\Details.cshtml" />
+    <Content Include="Views\Place\Create.cshtml" />
+    <Content Include="Views\Place\Edit.cshtml" />
+    <Content Include="Views\Place\Delete.cshtml" />
+    <Content Include="Views\Home\Search.cshtml" />
+    <Content Include="Views\Home\Buy.cshtml" />
+    <Content Include="Views\Home\Basket.cshtml" />
+    <Content Include="Views\Home\Marks.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

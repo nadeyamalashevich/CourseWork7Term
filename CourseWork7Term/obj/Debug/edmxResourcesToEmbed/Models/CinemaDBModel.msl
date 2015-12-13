@@ -31,11 +31,11 @@
     <EntitySetMapping Name="film">
       <EntityTypeMapping TypeName="CinemaModel.film">
         <MappingFragment StoreEntitySet="film">
+          <ScalarProperty Name="release_date" ColumnName="release_date" />
           <ScalarProperty Name="id" ColumnName="id" />
           <ScalarProperty Name="name" ColumnName="name" />
           <ScalarProperty Name="duration" ColumnName="duration" />
           <ScalarProperty Name="age_limit" ColumnName="age_limit" />
-          <ScalarProperty Name="release_year" ColumnName="release_year" />
           <ScalarProperty Name="description" ColumnName="description" />
           <ScalarProperty Name="average_mark" ColumnName="average_mark" />
         </MappingFragment>
@@ -87,9 +87,9 @@
     <EntitySetMapping Name="profile">
       <EntityTypeMapping TypeName="CinemaModel.profile">
         <MappingFragment StoreEntitySet="profile">
+          <ScalarProperty Name="is_admin" ColumnName="is_admin" />
+          <ScalarProperty Name="login" ColumnName="login" />
           <ScalarProperty Name="id" ColumnName="id" />
-          <ScalarProperty Name="name" ColumnName="name" />
-          <ScalarProperty Name="email" ColumnName="email" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -125,20 +125,12 @@
     <EntitySetMapping Name="ticket">
       <EntityTypeMapping TypeName="CinemaModel.ticket">
         <MappingFragment StoreEntitySet="ticket">
+          <ScalarProperty Name="buy_date" ColumnName="buy_date" />
           <ScalarProperty Name="is_bought" ColumnName="is_bought" />
           <ScalarProperty Name="profile_id" ColumnName="profile_id" />
           <ScalarProperty Name="cinema_id" ColumnName="cinema_id" />
           <ScalarProperty Name="film_id" ColumnName="film_id" />
           <ScalarProperty Name="place_id" ColumnName="place_id" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="user">
-      <EntityTypeMapping TypeName="CinemaModel.user">
-        <MappingFragment StoreEntitySet="user">
-          <ScalarProperty Name="profile_id" ColumnName="profile_id" />
-          <ScalarProperty Name="login" ColumnName="login" />
-          <ScalarProperty Name="password" ColumnName="password" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

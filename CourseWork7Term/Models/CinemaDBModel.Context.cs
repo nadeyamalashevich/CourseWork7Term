@@ -42,7 +42,6 @@ namespace CourseWork7Term.Models
         public DbSet<session> session { get; set; }
         public DbSet<sysdiagrams> sysdiagrams { get; set; }
         public DbSet<ticket> ticket { get; set; }
-        public DbSet<user> user { get; set; }
     
         public virtual int sp_alterdiagram(string diagramname, Nullable<int> owner_id, Nullable<int> version, byte[] definition)
         {

@@ -18,15 +18,13 @@ namespace CourseWork7Term.Models
         {
             this.film_profile_mark = new HashSet<film_profile_mark>();
             this.ticket = new HashSet<ticket>();
-            this.user = new HashSet<user>();
         }
     
         public int id { get; set; }
-        public string name { get; set; }
-        public string email { get; set; }
+        public string login { get; set; }
+        public bool is_admin { get; set; }
     
         public virtual ICollection<film_profile_mark> film_profile_mark { get; set; }
         public virtual ICollection<ticket> ticket { get; set; }
-        public virtual ICollection<user> user { get; set; }
     }
 }
