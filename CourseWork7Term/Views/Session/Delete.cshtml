@@ -1,38 +1,38 @@
 ﻿@model CourseWork7Term.Models.session
 
 @{
-    ViewBag.Title = "Delete";
+    ViewBag.Title = "Удаление записи о сеансе";
 }
 
-<h2>Delete</h2>
+<h2>Удаление записи о сеансе</h2>
 
-<h3>Are you sure you want to delete this?</h3>
+<h3>Удалить запись?</h3>
 <fieldset>
     <legend>session</legend>
 
     <div class="display-label">
-         @Html.DisplayNameFor(model => model.cinema.name)
+         Кинотеатр
     </div>
     <div class="display-field">
         @Html.DisplayFor(model => model.cinema.name)
     </div>
 
     <div class="display-label">
-         @Html.DisplayNameFor(model => model.film.name)
+         Фильм
     </div>
     <div class="display-field">
         @Html.DisplayFor(model => model.film.name)
     </div>
 
     <div class="display-label">
-         @Html.DisplayNameFor(model => model.start_time)
+         Начало сеанса
     </div>
     <div class="display-field">
         @Html.DisplayFor(model => model.start_time)
     </div>
 
     <div class="display-label">
-         @Html.DisplayNameFor(model => model.ticket_cost)
+         Стоимость билета
     </div>
     <div class="display-field">
         @Html.DisplayFor(model => model.ticket_cost)
@@ -41,7 +41,7 @@
 @using (Html.BeginForm()) {
     @Html.AntiForgeryToken()
     <p>
-        <input type="submit" value="Delete" /> |
-        @Html.ActionLink("Back to List", "Index")
+        <input type="submit" value="Удалить" /> |
+        @Html.ActionLink("К списку сеансов", "Index")
     </p>
 }

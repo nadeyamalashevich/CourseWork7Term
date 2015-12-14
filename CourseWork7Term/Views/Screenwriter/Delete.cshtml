@@ -1,17 +1,17 @@
 ﻿@model CourseWork7Term.Models.screenwriter
 
 @{
-    ViewBag.Title = "Delete";
+    ViewBag.Title = "Удаление записи о сценаристе";
 }
 
-<h2>Delete</h2>
+<h2>Удаление записи о сценаристе</h2>
 
-<h3>Are you sure you want to delete this?</h3>
+<h3>Удалить запись?</h3>
 <fieldset>
     <legend>screenwriter</legend>
 
     <div class="display-label">
-         @Html.DisplayNameFor(model => model.name)
+         Имя
     </div>
     <div class="display-field">
         @Html.DisplayFor(model => model.name)
@@ -20,7 +20,7 @@
 @using (Html.BeginForm()) {
     @Html.AntiForgeryToken()
     <p>
-        <input type="submit" value="Delete" /> |
-        @Html.ActionLink("Back to List", "Index")
+        <input type="submit" value="Удалить" /> |
+        @Html.ActionLink("К списку сценаристов", "Index")
     </p>
 }

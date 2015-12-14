@@ -1,54 +1,54 @@
 ﻿@model CourseWork7Term.Models.cinema
 
 @{
-    ViewBag.Title = "Details";
+    ViewBag.Title = "Кинотеатр";
 }
 
-<h2>Details</h2>
+<h2>Кинотеатр</h2>
 
 <fieldset>
     <legend>cinema</legend>
 
     <div class="display-label">
-         @Html.DisplayNameFor(model => model.name)
+         Название
     </div>
     <div class="display-field">
         @Html.DisplayFor(model => model.name)
     </div>
 
     <div class="display-label">
-         @Html.DisplayNameFor(model => model.location)
+         Местоположение
     </div>
     <div class="display-field">
         @Html.DisplayFor(model => model.location)
     </div>
 
     <div class="display-label">
-         @Html.DisplayNameFor(model => model.work_time)
+         Время работы
     </div>
     <div class="display-field">
         @Html.DisplayFor(model => model.work_time)
     </div>
 
     <div class="display-label">
-         @Html.DisplayNameFor(model => model.phone)
+         Телефон
     </div>
     <div class="display-field">
         @Html.DisplayFor(model => model.phone)
     </div>
     <div class="display-label">
-        @Html.DisplayNameFor(model => model.place)
+        Места
     </div>
     <div class="display-field">
         <ul>
             @foreach (var pl in Model.place)
             {
-                <li>@Html.Raw(String.Format("Range {0} - place {1}", pl.range, pl.number))</li>
+                <li>@Html.Raw(String.Format("Ряд {0} - место {1}", pl.range, pl.number))</li>
             }
         </ul>
     </div>
 </fieldset>
 <p>
-    @Html.ActionLink("Edit", "Edit", new { id=Model.id }) |
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("Редактировать", "Edit", new { id=Model.id }) |
+    @Html.ActionLink("К списку кинотеатров", "Index")
 </p>

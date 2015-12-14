@@ -470,6 +470,12 @@ textarea {
         margin-right: 4px;
     }
 
+.display-field {
+    font-size: 18px;
+    padding: 0 0 10px 20px;
+    color: #cc0099;
+}
+
 /* info and errors */
 .message-info {
     border: 1px solid;

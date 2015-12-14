@@ -1,10 +1,10 @@
 ﻿@model CourseWork7Term.Models.film
 
 @{
-    ViewBag.Title = "Edit";
+    ViewBag.Title = "Редактирование записи о фильме";
 }
 
-<h2>Edit</h2>
+<h2>Редактирование записи о фильме</h2>
 
 @using (Html.BeginForm())
 {
@@ -17,7 +17,7 @@
         @Html.HiddenFor(model => model.id)
 
         <div class="editor-label">
-            @Html.LabelFor(model => model.name)
+            Название
         </div>
         <div class="editor-field">
             @Html.EditorFor(model => model.name)
@@ -25,7 +25,7 @@
         </div>
 
         <div class="editor-label">
-            @Html.LabelFor(model => model.duration)
+            Продолжительность
         </div>
         <div class="editor-field">
             @Html.EditorFor(model => model.duration)
@@ -33,7 +33,7 @@
         </div>
 
         <div class="editor-label">
-            @Html.LabelFor(model => model.age_limit)
+            Ограничение возраста
         </div>
         <div class="editor-field">
             @Html.EditorFor(model => model.age_limit)
@@ -41,7 +41,7 @@
         </div>
 
         <div class="editor-label">
-            @Html.LabelFor(model => model.release_date)
+            Дата выпуска
         </div>
         <div class="editor-field">
             @Html.EditorFor(model => model.release_date)
@@ -49,7 +49,7 @@
         </div>
 
         <div class="editor-label">
-            @Html.LabelFor(model => model.description)
+            Описание
         </div>
         <div class="editor-field">
             @Html.EditorFor(model => model.description)
@@ -57,7 +57,7 @@
         </div>
 
         <div class="editor-label">
-            @Html.LabelFor(model => model.average_mark)
+            Средняя оценка
         </div>
         <div class="editor-field">
             @Html.EditorFor(model => model.average_mark)
@@ -66,19 +66,19 @@
         <table>
             <tr>
                 <th>
-                    <div class="editor-label"><b>Actors:</b></div>
+                    <div class="editor-label"><b>Актеры</b></div>
                 </th>
                 <th>
-                    <div class="editor-label"><b>Genre:</b></div>
+                    <div class="editor-label"><b>Жанры</b></div>
                 </th>
                 <th>
-                    <div class="editor-label"><b>Producers:</b></div>
+                    <div class="editor-label"><b>Продюсеры</b></div>
                 </th>
                 <th>
-                    <div class="editor-label"><b>Screenwriters:</b></div>
+                    <div class="editor-label"><b>Сценарисры</b></div>
                 </th>
                 <th>
-                    <div class="editor-label"><b>Countrys:</b></div>
+                    <div class="editor-label"><b>Страны</b></div>
                 </th>
             </tr>
             <tr>
@@ -135,13 +135,13 @@
             </tr>
         </table>
         <p>
-            <input type="submit" value="Save" />
+            <input type="submit" value="Сохранить" />
         </p>
     </fieldset>
 }
 
 <div>
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("К списку фильмов", "Index")
 </div>
 
 @section Scripts {

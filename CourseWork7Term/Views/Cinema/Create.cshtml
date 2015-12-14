@@ -1,10 +1,10 @@
 ﻿@model CourseWork7Term.Models.cinema
 
 @{
-    ViewBag.Title = "Create";
+    ViewBag.Title = "Добавление записи о кинотеатре";
 }
 
-<h2>Create</h2>
+<h2>Добавление записи о кинотеатре</h2>
 
 @using (Html.BeginForm()) {
     @Html.AntiForgeryToken()
@@ -14,7 +14,7 @@
         <legend>cinema</legend>
 
         <div class="editor-label">
-            @Html.LabelFor(model => model.name)
+            Название
         </div>
         <div class="editor-field">
             @Html.EditorFor(model => model.name)
@@ -22,7 +22,7 @@
         </div>
 
         <div class="editor-label">
-            @Html.LabelFor(model => model.location)
+            Местоположение
         </div>
         <div class="editor-field">
             @Html.EditorFor(model => model.location)
@@ -30,7 +30,7 @@
         </div>
 
         <div class="editor-label">
-            @Html.LabelFor(model => model.work_time)
+            Время работы
         </div>
         <div class="editor-field">
             @Html.EditorFor(model => model.work_time)
@@ -38,7 +38,7 @@
         </div>
 
         <div class="editor-label">
-            @Html.LabelFor(model => model.phone)
+            Телефон
         </div>
         <div class="editor-field">
             @Html.EditorFor(model => model.phone)
@@ -46,13 +46,13 @@
         </div>
 
         <p>
-            <input type="submit" value="Create" />
+            <input type="submit" value="Добавить" />
         </p>
     </fieldset>
 }
 
 <div>
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("К списку кинотеатров", "Index")
 </div>
 
 @section Scripts {

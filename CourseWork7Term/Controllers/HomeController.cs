@@ -15,22 +15,18 @@ namespace CourseWork7Term.Controllers
 
         public ActionResult Index()
         {
-            ViewBag.Message = "Modify this template to jump-start your ASP.NET MVC application.";
-
             return View();
         }
 
         public ActionResult About()
         {
-            ViewBag.Message = "Your app description page.";
+            ViewBag.Message = "Услуги сервиса:";
 
             return View();
         }
 
         public ActionResult Contact()
         {
-            ViewBag.Message = "Your contact page.";
-
             return View();
         }
 
@@ -183,6 +179,12 @@ namespace CourseWork7Term.Controllers
             }
 
             return RedirectToAction("Marks", "Home");
+        }
+
+        [Authorize(Roles = "admin")]
+        public ActionResult Admin()
+        {
+            return View();
         }
     }
 }

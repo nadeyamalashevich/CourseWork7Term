@@ -1,58 +1,58 @@
 ﻿@model CourseWork7Term.Models.film
 
 @{
-    ViewBag.Title = "Details";
+    ViewBag.Title = "Фильм";
 }
 
-<h2>Details</h2>
+<h2>Фильм</h2>
 
 <fieldset>
     <legend>film</legend>
 
     <div class="display-label">
-         @Html.DisplayNameFor(model => model.name)
+         Название
     </div>
     <div class="display-field">
         @Html.DisplayFor(model => model.name)
     </div>
 
     <div class="display-label">
-         @Html.DisplayNameFor(model => model.duration)
+         Продолжительность
     </div>
     <div class="display-field">
         @Html.DisplayFor(model => model.duration)
     </div>
 
     <div class="display-label">
-         @Html.DisplayNameFor(model => model.age_limit)
+         Ограничение возраста
     </div>
     <div class="display-field">
         @Html.DisplayFor(model => model.age_limit)
     </div>
 
     <div class="display-label">
-         @Html.DisplayNameFor(model => model.release_date)
+         Дата выпуска
     </div>
     <div class="display-field">
         @Html.DisplayFor(model => model.release_date)
     </div>
 
     <div class="display-label">
-         @Html.DisplayNameFor(model => model.description)
+         Описание
     </div>
     <div class="display-field">
         @Html.DisplayFor(model => model.description)
     </div>
 
     <div class="display-label">
-         @Html.DisplayNameFor(model => model.average_mark)
+         Средняя оценка
     </div>
     <div class="display-field">
         @Html.DisplayFor(model => model.average_mark)
     </div>
 
     <div class="display-label">
-        @Html.DisplayNameFor(model => model.genre)
+        Жанры
     </div>
     <div class="display-field">
         <ul>
@@ -64,7 +64,7 @@
     </div>
 
     <div class="display-label">
-        @Html.DisplayNameFor(model => model.country)
+        Страны
     </div>
     <div class="display-field">
         <ul>
@@ -76,7 +76,7 @@
     </div>
 
     <div class="display-label">
-        @Html.DisplayNameFor(model => model.actor)
+        Актеры
     </div>
     <div class="display-field">
         <ul>
@@ -88,7 +88,7 @@
     </div>
 
     <div class="display-label">
-        @Html.DisplayNameFor(model => model.screenwriter)
+        Сценаристы
     </div>
     <div class="display-field">
         <ul>
@@ -100,7 +100,7 @@
     </div>
 
     <div class="display-label">
-        @Html.DisplayNameFor(model => model.producer)
+        Продюсеры
     </div>
     <div class="display-field">
         <ul>
@@ -112,6 +112,6 @@
     </div>
 </fieldset>
 <p>
-    @Html.ActionLink("Edit", "Edit", new { id=Model.id }) |
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("Редактировать", "Edit", new { id=Model.id }) |
+    @Html.ActionLink("К списку фильмов", "Index")
 </p>

@@ -1,39 +1,39 @@
 ﻿@model IEnumerable<CourseWork7Term.Models.film>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Фильмы";
 }
 
-<h2>Index</h2>
+<h2>Фильмы</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @Html.ActionLink("Добавить", "Create")
 </p>
 <table>
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.name)
+            Название
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.duration)
+            Продолжительность
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.age_limit)
+            Ограничение возраста
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.release_date)
+            Дата выпуска
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.description)
+            Описание
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.average_mark)
+            Средняя оценка
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.genre)
+            Жанры
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.country)
+            Страны
         </th>
     </tr>
 
@@ -52,7 +52,13 @@
             @Html.DisplayFor(modelItem => item.release_date)
         </td>
         <td>
-            @{var subString = item.description.Substring(0, 50) + "...";}
+            @{
+                var subString = item.description;
+                if (subString.Length > 50)
+                {
+                    subString = item.description.Substring(0, 50) + "...";
+                }
+            }
             @Html.DisplayFor(modelItem => subString);
         </td>
         <td>
@@ -75,11 +81,16 @@
             </ul>
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.id }) |
-            @Html.ActionLink("Details", "Details", new { id=item.id }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.id })
+            @Html.ActionLink("Редактировать", "Edit", new { id=item.id }) |
+            @Html.ActionLink("Подробнее", "Details", new { id=item.id }) |
+            @Html.ActionLink("Удалить", "Delete", new { id=item.id })
         </td>
     </tr>
 }
 
 </table>
+
+<div>
+    <br />
+    @Html.ActionLink("На страницу администратора", "Admin", "Home")
+</div>

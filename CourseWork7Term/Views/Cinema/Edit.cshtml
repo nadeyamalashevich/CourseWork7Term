@@ -1,10 +1,10 @@
 ﻿@model CourseWork7Term.Models.cinema
 
 @{
-    ViewBag.Title = "Edit";
+    ViewBag.Title = "Редактирование записи о кинотеатре";
 }
 
-<h2>Edit</h2>
+<h2>Редактирование записи о кинотеатре</h2>
 
 @using (Html.BeginForm()) {
     @Html.AntiForgeryToken()
@@ -16,7 +16,7 @@
         @Html.HiddenFor(model => model.id)
 
         <div class="editor-label">
-            @Html.LabelFor(model => model.name)
+            Название
         </div>
         <div class="editor-field">
             @Html.EditorFor(model => model.name)
@@ -24,7 +24,7 @@
         </div>
 
         <div class="editor-label">
-            @Html.LabelFor(model => model.location)
+            Местоположение
         </div>
         <div class="editor-field">
             @Html.EditorFor(model => model.location)
@@ -32,7 +32,7 @@
         </div>
 
         <div class="editor-label">
-            @Html.LabelFor(model => model.work_time)
+            Время работы
         </div>
         <div class="editor-field">
             @Html.EditorFor(model => model.work_time)
@@ -40,32 +40,32 @@
         </div>
 
         <div class="editor-label">
-            @Html.LabelFor(model => model.phone)
+            Телефон
         </div>
         <div class="editor-field">
             @Html.EditorFor(model => model.phone)
             @Html.ValidationMessageFor(model => model.phone)
         </div>
 
-        <div class="editor-label"><b>Places:</b></div>
+        <div class="editor-label"><b>Места</b></div>
         @{
             var places = ViewBag.Places;
             foreach (var place in places)
             {
                 <input type="checkbox" name="selectedPlaces" value="@place.id"
                        @(Model.place.Contains(place) ? "checked=\"checked\"" : "") />
-                    @Html.Raw(String.Format("Range {0} - place {1}", place.range, place.number)) <br />
+                    @Html.Raw(String.Format("Ряд {0} - место {1}", place.range, place.number)) <br />
             }
         }
 
         <p>
-            <input type="submit" value="Save" />
+            <input type="submit" value="Сохранить" />
         </p>
     </fieldset>
 }
 
 <div>
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("К списку кинотеатров", "Index")
 </div>
 
 @section Scripts {

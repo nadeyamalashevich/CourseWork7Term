@@ -1,29 +1,29 @@
 ﻿@model IEnumerable<CourseWork7Term.Models.film>
 
 @{
-    ViewBag.Title = "Marks";
+    ViewBag.Title = "Оценки";
 }
 
-<h2>Marks</h2>
+<h2>Оценки</h2>
 
 <table>
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.name)
+           Фильм 
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.duration)
+            Продолжительность
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.age_limit)
+            Ограничение возраста
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.average_mark)
+            Средняя оценка
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.release_date)
+            Дата выпуска
         </th>
-        <th>You Mark</th>
+        <th>Моя оценка</th>
     </tr>
 
     @foreach (var item in Model)

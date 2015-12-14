@@ -1,10 +1,10 @@
 ﻿@model CourseWork7Term.Models.film
 
 @{
-    ViewBag.Title = "Create";
+    ViewBag.Title = "Добавление записи о фильме";
 }
 
-<h2>Create</h2>
+<h2>Добавление записи о фильме</h2>
 
 @using (Html.BeginForm())
 {
@@ -15,7 +15,7 @@
         <legend>film</legend>
 
         <div class="editor-label">
-            @Html.LabelFor(model => model.name)
+            Название
         </div>
         <div class="editor-field">
             @Html.EditorFor(model => model.name)
@@ -23,7 +23,7 @@
         </div>
 
         <div class="editor-label">
-            @Html.LabelFor(model => model.duration)
+            Продолжительность
         </div>
         <div class="editor-field">
             @Html.EditorFor(model => model.duration)
@@ -31,7 +31,7 @@
         </div>
 
         <div class="editor-label">
-            @Html.LabelFor(model => model.age_limit)
+            Ограничение возраста
         </div>
         <div class="editor-field">
             @Html.EditorFor(model => model.age_limit)
@@ -39,7 +39,7 @@
         </div>
 
         <div class="editor-label">
-            @Html.LabelFor(model => model.release_date)
+            Дата выпуска
         </div>
         <div class="editor-field">
             @Html.EditorFor(model => model.release_date)
@@ -47,7 +47,7 @@
         </div>
 
         <div class="editor-label">
-            @Html.LabelFor(model => model.description)
+            Описание
         </div>
         <div class="editor-field">
             @Html.EditorFor(model => model.description)
@@ -55,20 +55,20 @@
         </div>
 
         <div class="editor-label">
-            @Html.LabelFor(model => model.average_mark)
+            Средняя оценка
         </div>
         <div class="editor-field">
             @Html.EditorFor(model => model.average_mark)
             @Html.ValidationMessageFor(model => model.average_mark)
         </div>
         <p>
-            <input type="submit" value="Create" />
+            <input type="submit" value="Добавить" />
         </p>
     </fieldset>
 }
 
 <div>
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("К списку фильмов", "Index")
 </div>
 
 @section Scripts {

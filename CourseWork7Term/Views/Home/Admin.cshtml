@@ -1,0 +1,38 @@
+﻿@{
+    ViewBag.Title = "Страница администратора";
+}
+
+<h2>Страница администратора</h2>
+<ol class="round">
+    <div>Ссылки для редактирования информации:</div>
+    <li class="actor">
+        @Html.ActionLink("Актеры", "Index", "Actor")
+    </li>
+    <li class="cinema">
+        @Html.ActionLink("Кинотеатры", "Index", "Cinema")
+    </li>
+    <li class="country">
+        @Html.ActionLink("Страны", "Index", "Country")
+    </li>
+    <li class="film">
+        @Html.ActionLink("Фильмы", "Index", "Film")
+    </li>
+    <li class="genre">
+        @Html.ActionLink("Жанры", "Index", "Genre")
+    </li>
+    <li class="mark">
+        @Html.ActionLink("Оценки", "Index", "Mark")
+    </li>
+    <li class="place">
+        @Html.ActionLink("Места", "Index", "Place")
+    </li>
+    <li class="producer">
+        @Html.ActionLink("Продюсеры", "Index", "Producer")
+    </li>
+    <li class="screenwriter">
+        @Html.ActionLink("Сценаристы", "Index", "Screenwriter")
+    </li>
+    <li class="session">
+        @Html.ActionLink("Сеансы", "Index", "Session")
+    </li>
+</ol>

@@ -1,41 +1,41 @@
 ﻿@model IEnumerable<CourseWork7Term.Models.session>
 @{
-    ViewBag.Title = "Search";
+    ViewBag.Title = "Поиск";
 }
-<h2>Search for sesssions</h2>
+<h2>Поиск сеансов</h2>
 <div>
     @using (Ajax.BeginForm("Search", new AjaxOptions()))
     { 
         <div class="editor-label">
-            Cinemas
+            Кинотеатр
         </div>
         <div class="editor-field">
             @Html.DropDownList("Cinemas", (SelectList)ViewBag.Cinemas, String.Empty)
         </div>
 
         <div class="editor-label">
-            Films
+            Фильм
         </div>
         <div class="editor-field">
             @Html.DropDownList("Films", (SelectList)ViewBag.Films, String.Empty)
         </div>
         
         <div class="editor-label">
-            Actors
+            Актер
         </div>
         <div class="editor-field">
             @Html.DropDownList("Actors", (SelectList)ViewBag.Actors, String.Empty)
         </div>
         
         <div class="editor-label">
-            Producers
+            Продюсер
         </div>
         <div class="editor-field">
             @Html.DropDownList("Producers", (SelectList)ViewBag.Producers, String.Empty)
         </div>
         
         <div class="editor-label">
-            Screenwriters
+            Сценарист
         </div>
         <div class="editor-field">
             @Html.DropDownList("Screenwriters", (SelectList)ViewBag.Screenwriters, String.Empty)
@@ -47,32 +47,32 @@
 
 @if (Model != null && Model.Any())
 {
-    <h2>Results:</h2>
+    <h2>Результаты поиска:</h2>
     <table>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.cinema.name)
+                Кинотеатр
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.film.name)
+                Фильм
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.start_time)
+                Начало сеанса
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.ticket_cost)
+                Стоимость билета
             </th>
             <th>
-                Contry:
+                Страны
             </th>
             <th>
-                Actors:
+                Актеры
             </th>
             <th>
-                Producers:
+                Продюсеры
             </th>
             <th>
-                Screenwriters:
+                Сценаристы
             </th>
             <th></th>
             <th></th>
@@ -126,10 +126,10 @@
                     </ul>
                 </td>
                 <td>
-                    @Html.ActionLink("Buy Ticket", "Buy", new { cinema_id = item.cinema_id, film_id = item.film_id })
+                    @Html.ActionLink("Купить билет", "Buy", new { cinema_id = item.cinema_id, film_id = item.film_id })
                 </td>
                 <td>
-                    @Html.ActionLink("Set feedback", "Marks", new { film_id = item.film_id })
+                    @Html.ActionLink("Оценить фильм", "Marks", new { film_id = item.film_id })
                 </td>
             </tr>
         }

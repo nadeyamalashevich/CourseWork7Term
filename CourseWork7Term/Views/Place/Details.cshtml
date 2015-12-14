@@ -1,29 +1,29 @@
 ﻿@model CourseWork7Term.Models.place
 
 @{
-    ViewBag.Title = "Details";
+    ViewBag.Title = "Место";
 }
 
-<h2>Details</h2>
+<h2>Место</h2>
 
 <fieldset>
     <legend>place</legend>
 
     <div class="display-label">
-         @Html.DisplayNameFor(model => model.range)
+         Ряд
     </div>
     <div class="display-field">
         @Html.DisplayFor(model => model.range)
     </div>
 
     <div class="display-label">
-         @Html.DisplayNameFor(model => model.number)
+         Место
     </div>
     <div class="display-field">
         @Html.DisplayFor(model => model.number)
     </div>
 </fieldset>
 <p>
-    @Html.ActionLink("Edit", "Edit", new { id=Model.id }) |
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("Редактировать", "Edit", new { id=Model.id }) |
+    @Html.ActionLink("К списку мест", "Index")
 </p>

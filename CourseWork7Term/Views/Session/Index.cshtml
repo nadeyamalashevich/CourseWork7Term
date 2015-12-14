@@ -1,27 +1,27 @@
 ﻿@model IEnumerable<CourseWork7Term.Models.session>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Сеансы";
 }
 
-<h2>Index</h2>
+<h2>Сеансы</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @Html.ActionLink("Добавить", "Create")
 </p>
 <table>
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.cinema.name)
+            Кинотеатр
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.film.name)
+            Фильм
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.start_time)
+            Начало сеанса
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.ticket_cost)
+            Стоимость билета
         </th>
         <th></th>
     </tr>
@@ -41,11 +41,16 @@
             @Html.DisplayFor(modelItem => item.ticket_cost)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { cinema_id=item.cinema_id, film_id = item.film_id }) |
-            @Html.ActionLink("Details", "Details", new { cinema_id=item.cinema_id, film_id = item.film_id }) |
-            @Html.ActionLink("Delete", "Delete", new { cinema_id = item.cinema_id, film_id = item.film_id })
+            @Html.ActionLink("Редактировать", "Edit", new { cinema_id=item.cinema_id, film_id = item.film_id }) |
+            @Html.ActionLink("Подробнее", "Details", new { cinema_id=item.cinema_id, film_id = item.film_id }) |
+            @Html.ActionLink("Удалить", "Delete", new { cinema_id = item.cinema_id, film_id = item.film_id })
         </td>
     </tr>
 }
 
 </table>
+
+<div>
+    <br />
+    @Html.ActionLink("На страницу администратора", "Admin", "Home")
+</div>

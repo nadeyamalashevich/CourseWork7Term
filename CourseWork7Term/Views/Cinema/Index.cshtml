@@ -1,27 +1,27 @@
 ﻿@model IEnumerable<CourseWork7Term.Models.cinema>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Кинотеатры";
 }
 
-<h2>Index</h2>
+<h2>Кинотеатры</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @Html.ActionLink("Добавить", "Create")
 </p>
 <table>
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.name)
+            Название
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.location)
+            Местоположение
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.work_time)
+            Время работы
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.phone)
+            Телефон
         </th>
         <th></th>
     </tr>
@@ -41,11 +41,16 @@
             @Html.DisplayFor(modelItem => item.phone)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.id }) |
-            @Html.ActionLink("Details", "Details", new { id=item.id }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.id })
+            @Html.ActionLink("Редактировать", "Edit", new { id=item.id }) |
+            @Html.ActionLink("Подробнее", "Details", new { id=item.id }) |
+            @Html.ActionLink("Удалить", "Delete", new { id=item.id })
         </td>
     </tr>
 }
 
 </table>
+
+<div>
+    <br />
+    @Html.ActionLink("На страницу администратора", "Admin", "Home")
+</div>

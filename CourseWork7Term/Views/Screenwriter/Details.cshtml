@@ -1,22 +1,22 @@
 ﻿@model CourseWork7Term.Models.screenwriter
 
 @{
-    ViewBag.Title = "Details";
+    ViewBag.Title = "Сценарист";
 }
 
-<h2>Details</h2>
+<h2>Сценарист</h2>
 
 <fieldset>
     <legend>screenwriter</legend>
 
     <div class="display-label">
-         @Html.DisplayNameFor(model => model.name)
+         Имя
     </div>
     <div class="display-field">
         @Html.DisplayFor(model => model.name)
     </div>
 </fieldset>
 <p>
-    @Html.ActionLink("Edit", "Edit", new { id=Model.id }) |
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("Редактировать", "Edit", new { id=Model.id }) |
+    @Html.ActionLink("К списку сценаристов", "Index")
 </p>

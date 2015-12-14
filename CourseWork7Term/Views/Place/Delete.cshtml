@@ -1,24 +1,24 @@
 ﻿@model CourseWork7Term.Models.place
 
 @{
-    ViewBag.Title = "Delete";
+    ViewBag.Title = "Удаление записи о месте";
 }
 
-<h2>Delete</h2>
+<h2>Удаление записи о месте</h2>
 
-<h3>Are you sure you want to delete this?</h3>
+<h3>Удалить запись?</h3>
 <fieldset>
     <legend>place</legend>
 
     <div class="display-label">
-         @Html.DisplayNameFor(model => model.range)
+         Ряд
     </div>
     <div class="display-field">
         @Html.DisplayFor(model => model.range)
     </div>
 
     <div class="display-label">
-         @Html.DisplayNameFor(model => model.number)
+         Место
     </div>
     <div class="display-field">
         @Html.DisplayFor(model => model.number)
@@ -27,7 +27,7 @@
 @using (Html.BeginForm()) {
     @Html.AntiForgeryToken()
     <p>
-        <input type="submit" value="Delete" /> |
-        @Html.ActionLink("Back to List", "Index")
+        <input type="submit" value="Удалить" /> |
+        @Html.ActionLink("К списку мест", "Index")
     </p>
 }

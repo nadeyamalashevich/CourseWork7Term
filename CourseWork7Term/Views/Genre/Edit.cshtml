@@ -1,10 +1,10 @@
 ﻿@model CourseWork7Term.Models.genre
 
 @{
-    ViewBag.Title = "Edit";
+    ViewBag.Title = "Редактирование записи о жанре";
 }
 
-<h2>Edit</h2>
+<h2>Редактирование записи о жанре</h2>
 
 @using (Html.BeginForm()) {
     @Html.AntiForgeryToken()
@@ -16,7 +16,7 @@
         @Html.HiddenFor(model => model.id)
 
         <div class="editor-label">
-            @Html.LabelFor(model => model.name)
+            Название
         </div>
         <div class="editor-field">
             @Html.EditorFor(model => model.name)
@@ -24,13 +24,13 @@
         </div>
 
         <p>
-            <input type="submit" value="Save" />
+            <input type="submit" value="Сохранить" />
         </p>
     </fieldset>
 }
 
 <div>
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("К списку жанров", "Index")
 </div>
 
 @section Scripts {

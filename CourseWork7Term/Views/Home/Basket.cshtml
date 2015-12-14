@@ -1,28 +1,31 @@
 ﻿@model IEnumerable<CourseWork7Term.Models.ticket>
 
 @{
-    ViewBag.Title = "Basket";
+    ViewBag.Title = "Корзина";
 }
 
-<h2>Basket</h2>
+<h2>Корзина</h2>
 @if(Model != null && Model.Any())
 {
     <table>
         <tr>
             <th>
-                Cinema
+                Кинотеатр
             </th>
             <th>
-                Film
+                Фильм
             </th>
             <th>
-                Data
+                Время сеанса
             </th>
             <th>
-                Place
+                Место
             </th>
             <th>
-                Price
+                Стоимость билета
+            </th>
+            <th>
+                Дата покупки
             </th>
             <th></th>
         </tr>
@@ -45,7 +48,10 @@
                     @ticket.session.ticket_cost
                 </td>
                 <td>
-                    @Html.ActionLink("Set feedback", "Marks", new { film_id = ticket.session.film_id })
+                    @ticket.buy_date
+                </td>
+                <td>
+                    @Html.ActionLink("Оценить фильм", "Marks", new { film_id = ticket.session.film_id })
                 </td>
             </tr>
         }
