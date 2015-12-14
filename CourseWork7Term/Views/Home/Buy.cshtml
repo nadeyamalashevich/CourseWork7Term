@@ -1,10 +1,10 @@
 ﻿@model CourseWork7Term.Models.session
 @{
-    ViewBag.Title = "Buy";
+    ViewBag.Title = "Покупка билета";
     var hasOne = false;
 }
 
-<h2>Places:</h2>
+<h2>Места</h2>
 @if (Model.ticket.Any())
 {
     using (Html.BeginForm())
@@ -16,7 +16,7 @@
                 {
                     hasOne = true;
                     <li>
-                        @String.Format("Range {0} - place {1}   -  Price: {2}",
+                        @String.Format("Ряд {0} - место {1}   -  Цена: {2}",
                             ticket.place.range, ticket.place.number, ticket.session.ticket_cost)
                         <input type="checkbox" name="tickets"
                                value="@String.Concat(ticket.cinema_id, ".", ticket.film_id, ".", ticket.place_id)" />
@@ -24,10 +24,10 @@
                 }
             }
         </ul>
-        <input type="submit" value="Buy"/>
+        <input type="submit" value="Купить"/>
     }
 }
 else
 {
-    <h4>Nothing</h4>
+    <h4>На данный сеанс билетов нет</h4>
 }

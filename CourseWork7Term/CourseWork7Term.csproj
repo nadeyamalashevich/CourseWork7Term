@@ -257,9 +257,6 @@
     <Compile Include="Models\sp_helpdiagrams_Result.cs">
       <DependentUpon>CinemaDBModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\sysdiagrams.cs">
-      <DependentUpon>CinemaDBModel.tt</DependentUpon>
-    </Compile>
     <Compile Include="Models\ticket.cs">
       <DependentUpon>CinemaDBModel.tt</DependentUpon>
     </Compile>

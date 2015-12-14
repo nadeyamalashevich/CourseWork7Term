@@ -17,7 +17,6 @@
         <EntityTypeShape EntityType="CinemaModel.profile" Width="1.5" PointX="3" PointY="13.125" IsExpanded="true" />
         <EntityTypeShape EntityType="CinemaModel.screenwriter" Width="1.5" PointX="5.25" PointY="13.375" IsExpanded="true" />
         <EntityTypeShape EntityType="CinemaModel.session" Width="1.5" PointX="8.25" PointY="7.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="CinemaModel.sysdiagrams" Width="1.5" PointX="8.75" PointY="2" IsExpanded="true" />
         <EntityTypeShape EntityType="CinemaModel.ticket" Width="1.5" PointX="10.5" PointY="7.625" IsExpanded="true" />
         <AssociationConnector Association="CinemaModel.session_cinema" ManuallyRouted="false" />
         <AssociationConnector Association="CinemaModel.film_profile_mark_film" ManuallyRouted="false" />
